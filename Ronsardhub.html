@@ -6,8 +6,8 @@
 <title>EcoleRonsardGPT</title>
 <style>
 :root{
-  --bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#68748a;--primary:#ff6b2c;
-  --primary2:#ff8c42;--blue:#3d6df2;--border:#e4e9f2;--shadow:0 10px 30px rgba(28,43,72,.08);
+  --bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#68748a;--primary:#16a34a;
+  --primary2:#22c55e;--blue:#3d6df2;--border:#e4e9f2;--shadow:0 10px 30px rgba(28,43,72,.08);
 }
 body.dark{--bg:#101522;--card:#182033;--text:#f4f7ff;--muted:#9ca8bd;--border:#29344b;--shadow:0 10px 30px rgba(0,0,0,.25)}
 *{box-sizing:border-box}
@@ -17,16 +17,16 @@ button{cursor:pointer;border:0}
 .app{min-height:100vh;display:flex}
 .sidebar{width:250px;background:var(--card);border-right:1px solid var(--border);padding:22px 16px;position:fixed;inset:0 auto 0 0;z-index:10}
 .logo{font-weight:900;font-size:21px;margin:4px 8px 26px;display:flex;align-items:center;gap:9px}
-.logoMark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--primary),#ffb347);display:grid;place-items:center;color:white;font-weight:900}
+.logoMark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--primary),#4ade80);display:grid;place-items:center;color:white;font-weight:900}
 .nav button{width:100%;padding:12px 13px;margin:4px 0;background:transparent;color:var(--muted);border-radius:11px;text-align:left}
-.nav button.active,.nav button:hover{background:rgba(255,107,44,.11);color:var(--primary);font-weight:700}
+.nav button.active,.nav button:hover{background:rgba(22,163,74,.11);color:var(--primary);font-weight:700}
 .sideBottom{position:absolute;bottom:18px;left:16px;right:16px}
 .themeBtn{width:100%;padding:11px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:11px}
 .main{margin-left:250px;width:calc(100% - 250px);padding:26px;max-width:1500px}
 .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;gap:15px}
 .topbar h1{margin:0;font-size:27px}
 .pill{padding:9px 13px;border-radius:999px;background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:13px}
-.hero{background:linear-gradient(135deg,#ff6426,#ff9a43);color:white;border-radius:24px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,#16a34a,#4ade80);color:white;border-radius:24px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;width:230px;height:230px;border:35px solid rgba(255,255,255,.12);border-radius:50%;right:-70px;top:-80px}
 .hero h2{font-size:32px;margin:0 0 8px;position:relative;z-index:1}
 .hero p{max-width:650px;line-height:1.6;margin:0 0 20px;position:relative;z-index:1}
@@ -41,7 +41,7 @@ button{cursor:pointer;border:0}
 .sectionTitle h2{margin:0;font-size:20px}
 .gradeGrid{grid-template-columns:repeat(6,1fr)}
 .grade{padding:17px 8px;text-align:center;border-radius:15px;background:var(--card);border:1px solid var(--border);transition:.2s}
-.grade:hover,.grade.selected{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 8px 20px rgba(255,107,44,.13)}
+.grade:hover,.grade.selected{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 8px 20px rgba(22,163,74,.13)}
 .grade b{display:block;font-size:20px;color:var(--primary)}.grade small{color:var(--muted)}
 .subjectGrid{grid-template-columns:repeat(4,1fr)}
 .subject{min-height:130px}.subject .icon{font-size:30px}.subject h3{margin:10px 0 5px}.subject p{color:var(--muted);font-size:13px;margin:0}
@@ -53,7 +53,7 @@ select,input{padding:11px 13px;border-radius:10px;border:1px solid var(--border)
 .quizQuestion{font-size:22px;font-weight:800;line-height:1.4;margin:18px 0}
 .options{display:grid;gap:10px}.option{padding:14px;border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:12px;text-align:left}.option:hover{border-color:var(--blue)}
 .option.correct{border-color:#24a148;background:rgba(36,161,72,.12)}.option.wrong{border-color:#e5484d;background:rgba(229,72,77,.12)}
-.progress{height:9px;background:var(--border);border-radius:99px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,var(--primary),#ffb347);transition:.3s}
+.progress{height:9px;background:var(--border);border-radius:99px;overflow:hidden}.progress div{height:100%;background:linear-gradient(90deg,var(--primary),#4ade80);transition:.3s}
 .chat{height:570px;display:flex;flex-direction:column}.messages{flex:1;overflow:auto;padding:10px}.msg{max-width:78%;padding:12px 15px;border-radius:15px;margin:8px 0;line-height:1.5}.bot{background:var(--bg)}.user{background:var(--blue);color:white;margin-left:auto}.chatInput{display:flex;gap:8px;border-top:1px solid var(--border);padding-top:12px}.chatInput input{flex:1}
 .table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px;text-align:left;border-bottom:1px solid var(--border)}.muted{color:var(--muted)}
 .mobileMenu{display:none}
@@ -165,6 +165,7 @@ const subjects=[
  {id:"computing",name:"Computing",icon:"⌘",desc:"Algorithms, data, digital systems and coding."},
  {id:"business",name:"Business",icon:"₵",desc:"Enterprise, finance and basic economics."}
 ];
+
 let grade=Number(localStorage.getItem("er_grade")||7);
 let completed=Number(localStorage.getItem("er_completed")||0);
 let best=Number(localStorage.getItem("er_best")||0);
@@ -284,12 +285,14 @@ function renderGrades(){
  const box=document.getElementById("gradeGrid");box.innerHTML="";
  for(let i=1;i<=12;i++){let b=document.createElement("button");b.className="grade"+(i===grade?" selected":"");b.innerHTML=`<b>${i}</b><small>Grade</small>`;b.onclick=()=>setGrade(i);box.appendChild(b)}
 }
+
 function renderSubjects(){
  document.getElementById("subjectGrid").innerHTML=subjects.map(s=>`<div class="card subject"><div class="icon">${s.icon}</div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join("");
  ["learnSubject","quizSubject"].forEach(id=>{
   document.getElementById(id).innerHTML=subjects.map(s=>`<option value="${s.id}">${s.name}</option>`).join("");
  });
 }
+
 function setGrade(g){
  grade=g;localStorage.setItem("er_grade",g);
  document.getElementById("gradePill").textContent="Grade "+g;
@@ -298,6 +301,7 @@ function setGrade(g){
  document.getElementById("chatGrade").textContent=g;
  renderGrades();
 }
+
 function showPage(id){
  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
  document.getElementById(id).classList.add("active");
@@ -306,58 +310,123 @@ function showPage(id){
  document.getElementById("sidebar").classList.remove("open");
  if(id==="progress")updateStats();
 }
+
 function updateStats(){
- document.getElementById("statScore").textContent=best+"%";document.getElementById("statQuizzes").textContent=completed;
- document.getElementById("pQuizzes").textContent=completed;document.getElementById("pBest").textContent=best+"%";
+ document.getElementById("statScore").textContent=best+"%";
+ document.getElementById("statQuizzes").textContent=completed;
+ document.getElementById("pQuizzes").textContent=completed;
+ document.getElementById("pBest").textContent=best+"%";
 }
+
 function loadLesson(){
  const id=document.getElementById("learnSubject").value,s=lessons[id];
  document.getElementById("lessonBox").innerHTML=`<h2>${s.title} • Grade ${grade}</h2><p class="lesson">${s.text}</p><h3>Study challenge</h3><p class="lesson">Write down three things you already know about this topic, then one question you want to investigate. Use your notes, textbook or teacher resources to check your ideas.</p>`;
 }
+
 function startQuiz(){
  const id=document.getElementById("quizSubject").value;
  quizState={questions:[...qbank[id]].sort(()=>Math.random()-.5).slice(0,10),index:0,score:0,locked:false};
  showQuestion();
 }
+
 function showQuestion(){
  const q=quizState.questions[quizState.index];
  document.getElementById("quizProgress").style.width=(quizState.index/quizState.questions.length*100)+"%";
  document.getElementById("quizArea").innerHTML=`<div class="muted">Question ${quizState.index+1} of ${quizState.questions.length}</div><div class="quizQuestion">${q[0]}</div><div class="options">${q[1].map((x,i)=>`<button class="option" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${x}</button>`).join("")}</div>`;
 }
+
 function answer(i){
- if(quizState.locked)return;quizState.locked=true;
+ if(quizState.locked)return;
+ quizState.locked=true;
  const q=quizState.questions[quizState.index],buttons=document.querySelectorAll(".option");
- buttons[q[2]].classList.add("correct");if(i!==q[2])buttons[i].classList.add("wrong");else quizState.score++;
- setTimeout(()=>{quizState.index++;quizState.locked=false;if(quizState.index<quizState.questions.length)showQuestion();else finishQuiz()},650);
+ buttons[q[2]].classList.add("correct");
+ if(i!==q[2])buttons[i].classList.add("wrong");
+ else quizState.score++;
+ setTimeout(()=>{
+  quizState.index++;
+  quizState.locked=false;
+  if(quizState.index<quizState.questions.length)showQuestion();
+  else finishQuiz();
+ },650);
 }
+
 function finishQuiz(){
- const pct=Math.round(quizState.score/quizState.questions.length*100);completed++;best=Math.max(best,pct);
- localStorage.setItem("er_completed",completed);localStorage.setItem("er_best",best);
+ const pct=Math.round(quizState.score/quizState.questions.length*100);
+ completed++;
+ best=Math.max(best,pct);
+ localStorage.setItem("er_completed",completed);
+ localStorage.setItem("er_best",best);
  document.getElementById("quizProgress").style.width="100%";
  document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:25px"><div style="font-size:55px">${pct>=80?"🏆":pct>=50?"👏":"📚"}</div><h2>Quiz complete!</h2><p class="muted">You scored ${quizState.score}/${quizState.questions.length} (${pct}%).</p><button class="btn primary" onclick="startQuiz()">Try again</button></div>`;
  updateStats();
 }
-function resetProgress(){completed=0;best=0;localStorage.removeItem("er_completed");localStorage.removeItem("er_best");updateStats()}
+
+function resetProgress(){
+ completed=0;
+ best=0;
+ localStorage.removeItem("er_completed");
+ localStorage.removeItem("er_best");
+ updateStats();
+}
+
 function sendChat(){
- const input=document.getElementById("chatInput"),text=input.value.trim();if(!text)return;
- addMsg(text,"user");input.value="";
+ const input=document.getElementById("chatInput"),text=input.value.trim();
+ if(!text)return;
+ addMsg(text,"user");
+ input.value="";
  let answer="I can help you study. Try asking me to explain a concept, give you practice questions, or check an answer. For example: “Explain fractions for Grade "+grade+".”";
  const t=text.toLowerCase();
- if(t.includes("fraction"))answer="A fraction represents part of a whole. The top number is the numerator and the bottom number is the denominator. For example, 3/4 means 3 equal parts out of 4.";
- else if(t.includes("photosynthesis"))answer="Photosynthesis is the process plants use to make glucose using light energy. They take in carbon dioxide and water, and oxygen is released.";
- else if(t.includes("algorithm"))answer="An algorithm is a clear sequence of steps for solving a problem or completing a task. Good algorithms are precise, ordered and testable.";
- else if(t.includes("hello")||t.includes("hi"))answer="Hey! Ready to study? Pick a subject or ask me a question.";
+
+ if(t.includes("fraction"))
+  answer="A fraction represents part of a whole. The top number is the numerator and the bottom number is the denominator. For example, 3/4 means 3 equal parts out of 4.";
+
+ else if(t.includes("photosynthesis"))
+  answer="Photosynthesis is the process plants use to make glucose using light energy. They take in carbon dioxide and water, and oxygen is released.";
+
+ else if(t.includes("algorithm"))
+  answer="An algorithm is a clear sequence of steps for solving a problem or completing a task. Good algorithms are precise, ordered and testable.";
+
+ else if(t.includes("hello")||t.includes("hi"))
+  answer="Hey! Ready to study? Pick a subject or ask me a question.";
+
  setTimeout(()=>addMsg(answer,"bot"),250);
 }
-function addMsg(t,type){const d=document.createElement("div");d.className="msg "+type;d.textContent=t;document.getElementById("messages").appendChild(d);document.getElementById("messages").scrollTop=99999}
+
+function addMsg(t,type){
+ const d=document.createElement("div");
+ d.className="msg "+type;
+ d.textContent=t;
+ document.getElementById("messages").appendChild(d);
+ document.getElementById("messages").scrollTop=99999;
+}
+
 document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>showPage(b.dataset.page));
+
 document.getElementById("themeBtn").onclick=()=>{
- document.body.classList.toggle("dark");let dark=document.body.classList.contains("dark");localStorage.setItem("er_dark",dark);document.getElementById("themeBtn").textContent=dark?"☀ Light mode":"☾ Dark mode";
+ document.body.classList.toggle("dark");
+ let dark=document.body.classList.contains("dark");
+ localStorage.setItem("er_dark",dark);
+ document.getElementById("themeBtn").textContent=dark?"☀ Light mode":"☾ Dark mode";
 };
-document.getElementById("mobileMenu").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
-document.getElementById("chatInput").addEventListener("keydown",e=>{if(e.key==="Enter")sendChat()});
-if(localStorage.getItem("er_dark")==="true"){document.body.classList.add("dark");document.getElementById("themeBtn").textContent="☀ Light mode"}
-renderGrades();renderSubjects();setGrade(grade);updateStats();loadLesson();
+
+document.getElementById("mobileMenu").onclick=()=>{
+ document.getElementById("sidebar").classList.toggle("open");
+};
+
+document.getElementById("chatInput").addEventListener("keydown",e=>{
+ if(e.key==="Enter")sendChat();
+});
+
+if(localStorage.getItem("er_dark")==="true"){
+ document.body.classList.add("dark");
+ document.getElementById("themeBtn").textContent="☀ Light mode";
+}
+
+renderGrades();
+renderSubjects();
+setGrade(grade);
+updateStats();
+loadLesson();
 </script>
 </body>
 </html>
