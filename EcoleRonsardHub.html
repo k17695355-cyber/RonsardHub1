@@ -1,0 +1,5120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EcoleRonsardHub</title>
+
+<style>
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#68748a;
+  --primary:#16a34a;
+  --primary2:#22c55e;
+  --blue:#2563eb;
+  --border:#e2e8f0;
+  --danger:#dc2626;
+  --shadow:0 8px 25px rgba(15,23,42,.07);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+  width:245px;
+  background:#ffffff;
+  border-right:1px solid var(--border);
+  padding:22px 15px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  z-index:50;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:35px;
+  padding-left:8px;
+}
+
+.logoMark{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+}
+
+.logoName{
+  color:var(--text);
+}
+
+.logoHub{
+  color:var(--primary);
+}
+
+.nav{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  text-align:left;
+  padding:13px 14px;
+  border-radius:10px;
+  color:var(--muted);
+  font-weight:600;
+}
+
+.nav button:hover{
+  background:#f0fdf4;
+  color:var(--primary);
+}
+
+.nav button.active{
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.sideBottom{
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:20px;
+}
+
+.themeBtn{
+  width:100%;
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:11px;
+  border-radius:10px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  margin-left:245px;
+  width:calc(100% - 245px);
+  min-height:100vh;
+}
+
+.topbar{
+  height:70px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  position:sticky;
+  top:0;
+  z-index:20;
+}
+
+.topbar h1{
+  font-size:22px;
+  margin:0;
+}
+
+.pill{
+  background:#f0fdf4;
+  color:#15803d;
+  border:1px solid #bbf7d0;
+  padding:9px 14px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+.mobileMenu{
+  display:none;
+  border:0;
+  background:transparent;
+  font-size:24px;
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.page{
+  display:none;
+  padding:30px;
+}
+
+.page.active{
+  display:block;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#166534,#22c55e);
+  color:white;
+  border-radius:20px;
+  padding:30px;
+  margin-bottom:25px;
+}
+
+.hero h2{
+  font-size:30px;
+  margin:0 0 10px;
+}
+
+.hero p{
+  margin:0;
+  opacity:.9;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:11px 16px;
+  font-weight:700;
+}
+
+.btn.primary{
+  background:var(--primary);
+  color:white;
+}
+
+.btn.blue{
+  background:var(--blue);
+  color:white;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+/* =========================
+   SUBJECT CARDS
+========================= */
+
+.subjectCard{
+  cursor:pointer;
+  transition:.2s;
+}
+
+.subjectCard:hover{
+  transform:translateY(-3px);
+}
+
+.subjectIcon{
+  width:45px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#dcfce7;
+  color:#15803d;
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.subjectCard h3{
+  margin:0 0 7px;
+}
+
+.subjectCard p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* =========================
+   GRADE SELECT
+========================= */
+
+.gradeBox{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+select,
+input{
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:10px;
+  padding:11px 13px;
+  outline:none;
+}
+
+select:focus,
+input:focus{
+  border-color:var(--primary);
+}
+
+/* =========================
+   LESSONS
+========================= */
+
+.lesson{
+  margin-top:18px;
+}
+
+.lesson h2{
+  margin-top:0;
+}
+
+.lessonSection{
+  margin-top:18px;
+  padding:17px;
+  background:#f8fafc;
+  border-radius:12px;
+  border:1px solid var(--border);
+}
+
+.lessonSection h3{
+  margin-top:0;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quizWrap{
+  max-width:900px;
+  margin:auto;
+}
+
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.quizQuestion{
+  font-size:23px;
+  font-weight:800;
+  margin:22px 0;
+  line-height:1.4;
+}
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.option{
+  text-align:left;
+  padding:15px;
+  border:2px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  border-radius:12px;
+  transition:.15s;
+}
+
+.option:hover{
+  border-color:var(--primary);
+  background:#f0fdf4;
+}
+
+.option.correct{
+  border-color:var(--primary);
+  background:#dcfce7;
+}
+
+.option.wrong{
+  border-color:var(--danger);
+  background:#fee2e2;
+}
+
+.progress{
+  height:9px;
+  background:#e5e7eb;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+#quizProgress{
+  height:100%;
+  background:linear-gradient(90deg,var(--primary),var(--primary2));
+  transition:.2s;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat{
+  max-width:900px;
+  margin:auto;
+}
+
+.messages{
+  min-height:400px;
+  max-height:550px;
+  overflow-y:auto;
+  padding:10px;
+}
+
+.msg{
+  max-width:80%;
+  padding:12px 15px;
+  margin:10px 0;
+  border-radius:14px;
+  white-space:pre-wrap;
+  line-height:1.5;
+}
+
+.msg.bot{
+  background:#f1f5f9;
+}
+
+.msg.user{
+  background:#dcfce7;
+  margin-left:auto;
+}
+
+.chatInput{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.chatInput input{
+  flex:1;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stat{
+  text-align:center;
+  padding:20px;
+}
+
+.statNumber{
+  font-size:32px;
+  font-weight:900;
+  color:var(--primary);
+}
+
+.statLabel{
+  color:var(--muted);
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark{
+  --bg:#0f172a;
+  --card:#111827;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --border:#263244;
+  --shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+body.dark .sidebar{
+  background:#111827;
+}
+
+body.dark .topbar{
+  background:#111827;
+}
+
+body.dark .nav button:hover{
+  background:#13251a;
+}
+
+body.dark .nav button.active{
+  background:#14351f;
+}
+
+body.dark .lessonSection{
+  background:#0f172a;
+}
+
+body.dark .option:hover{
+  background:#13251a;
+}
+
+body.dark .msg.bot{
+  background:#1e293b;
+}
+
+body.dark .msg.user{
+  background:#14532d;
+}
+
+body.dark .pill{
+  background:#14351f;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .sidebar{
+    transform:translateX(-100%);
+    transition:.25s;
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-left:0;
+    width:100%;
+  }
+
+  .mobileMenu{
+    display:block;
+  }
+
+  .topbar{
+    padding:0 15px;
+  }
+
+  .page{
+    padding:18px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .hero h2{
+    font-size:25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="logo">
+    <span class="logoMark">ER</span>
+    <span class="logoName">EcoleRonsard</span>
+    <span class="logoHub">Hub</span>
+  </div>
+
+  <div class="nav">
+
+    <button class="active" data-page="home">
+      ⌂ &nbsp; Dashboard
+    </button>
+
+    <button data-page="learn">
+      📚 &nbsp; Learn
+    </button>
+
+    <button data-page="quiz">
+      🧠 &nbsp; Quizzes
+    </button>
+
+    <button data-page="assistant">
+      💬 &nbsp; Study GPT
+    </button>
+
+    <button data-page="progress">
+      📊 &nbsp; Progress
+    </button>
+
+    <button data-page="about">
+      ℹ️ &nbsp; About
+    </button>
+
+  </div>
+
+  <div class="sideBottom">
+
+    <button class="themeBtn" id="themeBtn">
+      ☾ Dark mode
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+  <div class="topbar">
+
+    <div style="display:flex;align-items:center;gap:10px">
+
+      <button class="mobileMenu" id="mobileMenu">
+        ☰
+      </button>
+
+      <h1 id="pageTitle">
+        Dashboard
+      </h1>
+
+    </div>
+
+    <div class="pill">
+      Cambridge Curriculum •
+      <b id="gradePill">Grade 7</b>
+    </div>
+
+  </div>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section class="page active" id="home">
+
+  <div class="hero">
+
+    <h2>
+      Welcome to EcoleRonsardHub 👋
+    </h2>
+
+    <p>
+      Learn, practise and test yourself with Grade-specific questions.
+    </p>
+
+  </div>
+
+
+  <div class="card gradeBox">
+
+    <strong>
+      Your grade:
+    </strong>
+
+    <select id="gradeSelect">
+      <option value="1">Grade 1</option>
+      <option value="2">Grade 2</option>
+      <option value="3">Grade 3</option>
+      <option value="4">Grade 4</option>
+      <option value="5">Grade 5</option>
+      <option value="6">Grade 6</option>
+      <option value="7" selected>Grade 7</option>
+      <option value="8">Grade 8</option>
+      <option value="9">Grade 9</option>
+      <option value="10">Grade 10</option>
+      <option value="11">Grade 11</option>
+      <option value="12">Grade 12</option>
+    </select>
+
+  </div>
+
+
+  <div class="grid" id="dashboardSubjects"></div>
+
+</section>
+
+
+<!-- =========================
+     LEARN
+========================= -->
+
+<section class="page" id="learn">
+
+  <div class="card">
+
+    <h2>Learn</h2>
+
+    <p class="muted">
+      Choose a subject to see a lesson for your selected grade.
+    </p>
+
+    <div class="grid" id="learnSubjects"></div>
+
+  </div>
+
+  <div id="lessonArea"></div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section class="page" id="quiz">
+
+  <div class="quizWrap">
+
+    <div class="card">
+
+      <h2>
+        Grade <span id="quizGrade"></span> Quiz
+      </h2>
+
+      <p class="muted">
+        Every grade has its own questions for every subject.
+      </p>
+
+      <div class="controls">
+
+        <select id="quizSubject"></select>
+
+        <button
+          class="btn primary"
+          onclick="startQuiz()">
+          New quiz
+        </button>
+
+      </div>
+
+
+      <div style="margin:18px 0" class="progress">
+
+        <div
+          id="quizProgress"
+          style="width:0%">
+        </div>
+
+      </div>
+
+
+      <div id="quizArea">
+
+        <p class="muted">
+          Choose a subject and press "New quiz".
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STUDY GPT
+========================= -->
+
+<section class="page" id="assistant">
+
+  <div class="card chat">
+
+    <div class="messages" id="messages">
+
+      <div class="msg bot">
+
+        Hi! I'm EcoleRonsardHub.
+        Ask me a school question and I'll try to explain it at your Grade
+        <span id="chatGrade">7</span> level.
+
+      </div>
+
+    </div>
+
+
+    <div class="chatInput">
+
+      <input
+        id="chatInput"
+        placeholder="Ask a question...">
+
+      <button
+        class="btn blue"
+        onclick="sendChat()">
+        Send
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROGRESS
+========================= -->
+
+<section class="page" id="progress">
+
+  <div class="card">
+
+    <h2>Your Progress</h2>
+
+    <div class="grid">
+
+      <div class="stat">
+
+        <div
+          class="statNumber"
+          id="completedStat">
+          0
+        </div>
+
+        <div class="statLabel">
+          Quizzes completed
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          class="statNumber"
+          id="bestStat">
+          0%
+        </div>
+
+        <div class="statLabel">
+          Best score
+        </div>
+
+      </div>
+
+
+      <div class="stat">
+
+        <div
+          class="statNumber"
+          id="currentGradeStat">
+          7
+        </div>
+
+        <div class="statLabel">
+          Current grade
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="btn"
+      onclick="resetProgress()">
+      Reset progress
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="page" id="about">
+
+  <div class="card">
+
+    <h2>About EcoleRonsardHub</h2>
+
+    <p>
+      EcoleRonsardHub is an educational dashboard designed
+      to help students learn, practise and test themselves.
+    </p>
+
+    <p>
+      The quiz system supports Grades 1–12 and generates
+      different questions for each grade and subject.
+    </p>
+
+    <p class="muted">
+      Subjects: Mathematics, English, Science, French,
+      Geography, History, Computing and Business.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUBJECTS
+========================================================= */
+
+const subjects = [
+
+  {
+    id:"math",
+    name:"Mathematics",
+    icon:"∑",
+    desc:"Numbers, algebra, geometry and problem solving."
+  },
+
+  {
+    id:"english",
+    name:"English",
+    icon:"A",
+    desc:"Reading, writing, grammar and vocabulary."
+  },
+
+  {
+    id:"science",
+    name:"Science",
+    icon:"⚗",
+    desc:"Biology, chemistry, physics and scientific thinking."
+  },
+
+  {
+    id:"french",
+    name:"French",
+    icon:"Fr",
+    desc:"Vocabulary, grammar, reading and communication."
+  },
+
+  {
+    id:"geography",
+    name:"Geography",
+    icon:"◎",
+    desc:"Places, people, environments and Earth systems."
+  },
+
+  {
+    id:"history",
+    name:"History",
+    icon:"⌛",
+    desc:"People, societies, events and historical evidence."
+  },
+
+  {
+    id:"computing",
+    name:"Computing",
+    icon:"⌘",
+    desc:"Algorithms, data, digital systems and coding."
+  },
+
+  {
+    id:"business",
+    name:"Business",
+    icon:"₵",
+    desc:"Enterprise, finance and basic economics."
+  }
+
+];
+
+
+/* =========================================================
+   GRADE
+========================================================= */
+
+let grade =
+  Number(localStorage.getItem("er_grade") || 7);
+
+let completed =
+  Number(localStorage.getItem("er_completed") || 0);
+
+let best =
+  Number(localStorage.getItem("er_best") || 0);
+
+
+document.getElementById("gradeSelect").value = grade;
+
+
+/* =========================================================
+   QUIZ STATE
+========================================================= */
+
+let quizState = {
+
+  questions:[],
+
+  index:0,
+
+  score:0,
+
+  locked:false
+
+};
+
+
+/* =========================================================
+   QUESTION CREATOR
+=========================================================
+
+   THIS IS THE IMPORTANT PART.
+
+   Instead of:
+
+   qbank.math
+
+   we use:
+
+   createQuestions(grade, subject)
+
+   Therefore:
+
+   Grade 1 Mathematics
+   Grade 2 Mathematics
+   Grade 3 Mathematics
+   ...
+   Grade 12 Mathematics
+
+   all receive different questions.
+
+========================================================= */
+
+function makeQuestion(question, options, answer){
+
+  return [
+    question,
+    options,
+    answer
+  ];
+
+}
+
+
+function shuffle(array){
+
+  return [...array]
+    .sort(() => Math.random() - 0.5);
+
+}
+
+
+/* =========================================================
+   MATHEMATICS
+========================================================= */
+
+function mathQuestions(g){
+
+  const q = [];
+
+  if(g <= 2){
+
+    q.push(
+      makeQuestion(
+        `What is ${g + 2} + ${g + 3}?`,
+        [
+          `${g + 4}`,
+          `${g + 5}`,
+          `${g + 6}`,
+          `${g + 7}`
+        ],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g + 5} - ${g}?`,
+        [
+          `${g + 3}`,
+          `${g + 4}`,
+          `${g + 5}`,
+          `${g + 6}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `How many sides does a triangle have?`,
+        ["2","3","4","5"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What number comes after ${g + 8}?`,
+        [
+          `${g + 7}`,
+          `${g + 8}`,
+          `${g + 9}`,
+          `${g + 10}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Which number is greater?`,
+        [`${g + 1}`,`${g + 4}`,`${g + 2}`,`${g}`],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `How many corners does a square have?`,
+        ["3","4","5","6"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g + 1} + ${g + 7}?`,
+        [
+          `${2*g + 6}`,
+          `${2*g + 7}`,
+          `${2*g + 8}`,
+          `${2*g + 9}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Which shape has no corners?`,
+        ["Square","Triangle","Circle","Rectangle"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g + 6} - 2?`,
+        [
+          `${g + 2}`,
+          `${g + 3}`,
+          `${g + 4}`,
+          `${g + 5}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `How many sides does a rectangle have?`,
+        ["2","3","4","5"],
+        2
+      )
+    );
+
+  }
+
+  else if(g <= 4){
+
+    q.push(
+      makeQuestion(
+        `What is ${g * 6} + ${g * 3}?`,
+        [
+          `${g * 7}`,
+          `${g * 8}`,
+          `${g * 9}`,
+          `${g * 10}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g * 5} × 2?`,
+        [
+          `${g * 5}`,
+          `${g * 8}`,
+          `${g * 10}`,
+          `${g * 12}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g * 20} ÷ 4?`,
+        [
+          `${g * 4}`,
+          `${g * 5}`,
+          `${g * 6}`,
+          `${g * 8}`
+        ],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Which fraction is equivalent to 1/2?`,
+        ["2/3","2/4","3/5","4/6"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `How many degrees are in a right angle?`,
+        ["45°","60°","90°","180°"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the perimeter of a square with side ${g + 1} cm?`,
+        [
+          `${g + 1} cm`,
+          `${2*(g+1)} cm`,
+          `${3*(g+1)} cm`,
+          `${4*(g+1)} cm`
+        ],
+        3
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is ${g * 10} + ${g * 7}?`,
+        [
+          `${g * 15}`,
+          `${g * 16}`,
+          `${g * 17}`,
+          `${g * 18}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Which number is a multiple of 5?`,
+        ["12","17","25","32"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 3/4 written as a decimal?`,
+        ["0.25","0.5","0.75","1.25"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 25% of 100?`,
+        ["10","20","25","50"],
+        2
+      )
+    );
+
+  }
+
+  else if(g <= 6){
+
+    q.push(
+      makeQuestion(
+        `What is ${g * 7} × 3?`,
+        [
+          `${g * 18}`,
+          `${g * 20}`,
+          `${g * 21}`,
+          `${g * 24}`
+        ],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Simplify 12/18.`,
+        ["1/2","2/3","3/4","4/5"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 0.75 as a percentage?`,
+        ["7.5%","25%","75%","750%"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 3/5 + 1/5?`,
+        ["2/5","3/5","4/5","5/5"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the area of a rectangle 8 cm by 5 cm?`,
+        ["13 cm²","26 cm²","40 cm²","80 cm²"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 15% of 200?`,
+        ["15","20","30","40"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 2³?`,
+        ["5","6","8","9"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Solve: x + 7 = 15`,
+        ["x = 6","x = 7","x = 8","x = 9"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `How many degrees are in a straight line?`,
+        ["90°","180°","270°","360°"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the mean of 4, 6 and 8?`,
+        ["5","6","7","8"],
+        1
+      )
+    );
+
+  }
+
+  else if(g === 7){
+
+    q.push(
+      makeQuestion(
+        `What is 5/6 ÷ 3/4?`,
+        ["5/8","10/9","15/24","2/3"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Simplify 21/45.`,
+        ["3/5","7/15","5/7","21/15"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Collect like terms: 5x + 3x.`,
+        ["8","8x","15x","2x"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the area of a circle with radius r?`,
+        ["πr","2πr","πr²","r²/π"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 29/30 × 6000?`,
+        ["5800","5900","6000","6200"],
+        0
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the volume of a cuboid measuring 4 cm × 5 cm × 6 cm?`,
+        ["60 cm³","100 cm³","120 cm³","150 cm³"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the probability of rolling a 6 on a fair die?`,
+        ["1/2","1/4","1/6","1/12"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 35% written as a decimal?`,
+        ["0.035","0.35","3.5","35"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the next term: 3, 6, 9, 12, ...?`,
+        ["13","14","15","16"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the angle sum of a triangle?`,
+        ["90°","180°","270°","360°"],
+        1
+      )
+    );
+
+  }
+
+  else if(g <= 9){
+
+    q.push(
+      makeQuestion(
+        `Solve: 3x + 5 = 20.`,
+        ["x = 3","x = 4","x = 5","x = 6"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Expand: 3(x + 4).`,
+        ["3x + 4","3x + 7","3x + 12","x + 12"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Factorise: 6x + 12.`,
+        ["6(x + 2)","3(x + 4)","2(3x + 12)","6(x + 12)"],
+        0
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the gradient of y = 4x + 2?`,
+        ["2","4","6","8"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 2⁵?`,
+        ["10","16","25","32"],
+        3
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Solve: x² = 49.`,
+        ["x = 5","x = 6","x = 7 or -7","x = 49"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the probability of an impossible event?`,
+        ["0","1/2","1","100"],
+        0
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the area of a triangle with base 10 cm and height 6 cm?`,
+        ["16 cm²","30 cm²","60 cm²","120 cm²"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is √144?`,
+        ["10","11","12","14"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Simplify: 4a + 7a - 2a.`,
+        ["7a","8a","9a","11a"],
+        2
+      )
+    );
+
+  }
+
+  else{
+
+    q.push(
+      makeQuestion(
+        `Solve: 2x² - 8 = 0.`,
+        ["x = ±1","x = ±2","x = ±4","x = 4"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `Differentiate x².`,
+        ["x","2x","x²","2"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the gradient of y = -3x + 7?`,
+        ["-7","-3","3","7"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is log₁₀(100)?`,
+        ["1","2","10","100"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the discriminant of ax² + bx + c?`,
+        ["a² - 4bc","b² - 4ac","b² + 4ac","2b - 4ac"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is sin(90°)?`,
+        ["0","1/2","1","2"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the derivative of 5x?`,
+        ["5","x","5x","0"],
+        0
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the integral of 2x?`,
+        ["2x²","x² + C","2 + C","x + C"],
+        1
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is 2⁻³?`,
+        ["-8","-1/8","1/8","8"],
+        2
+      )
+    );
+
+    q.push(
+      makeQuestion(
+        `What is the gradient of a horizontal line?`,
+        ["-1","0","1","undefined"],
+        1
+      )
+    );
+
+  }
+
+  return q;
+}
+
+
+/* =========================================================
+   ENGLISH
+========================================================= */
+
+function englishQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion(
+        "Which word is a noun?",
+        ["run","blue","dog","quickly"],
+        2
+      ),
+
+      makeQuestion(
+        "Which word is a verb?",
+        ["jump","yellow","table","happy"],
+        0
+      ),
+
+      makeQuestion(
+        "Which punctuation mark ends a question?",
+        [".","!","?",","],
+        2
+      ),
+
+      makeQuestion(
+        "Which word is an adjective?",
+        ["cat","run","beautiful","quickly"],
+        2
+      ),
+
+      makeQuestion(
+        "What is the opposite of hot?",
+        ["warm","cold","large","fast"],
+        1
+      ),
+
+      makeQuestion(
+        "Which word rhymes with cat?",
+        ["dog","hat","sun","tree"],
+        1
+      ),
+
+      makeQuestion(
+        "Which is a capital letter?",
+        ["b","d","G","p"],
+        2
+      ),
+
+      makeQuestion(
+        "Which sentence is a question?",
+        ["I like apples.","Where are you?","The dog runs.","It is blue."],
+        1
+      ),
+
+      makeQuestion(
+        "What is the plural of cat?",
+        ["cats","cat's","cates","cat"],
+        0
+      ),
+
+      makeQuestion(
+        "Which word means happy?",
+        ["sad","joyful","angry","tired"],
+        1
+      )
+
+    ];
+
+  }
+
+  if(g <= 4){
+
+    return [
+
+      makeQuestion(
+        "Which sentence uses a full stop correctly?",
+        [
+          "I like reading.",
+          "I like reading?",
+          "I like reading!",
+          "I like reading,"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a synonym for big?",
+        ["tiny","large","slow","quiet"],
+        1
+      ),
+
+      makeQuestion(
+        "Which word is an adverb?",
+        ["quickly","blue","house","jump"],
+        0
+      ),
+
+      makeQuestion(
+        "What is the past tense of run?",
+        ["runned","ran","running","runs"],
+        1
+      ),
+
+      makeQuestion(
+        "Which is a compound word?",
+        ["sunflower","blue","run","happy"],
+        0
+      ),
+
+      makeQuestion(
+        "What is a paragraph mainly used for?",
+        [
+          "Organising ideas",
+          "Making every word capital",
+          "Removing punctuation",
+          "Changing the alphabet"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which word is a conjunction?",
+        ["and","quickly","table","green"],
+        0
+      ),
+
+      makeQuestion(
+        "What is the opposite of ancient?",
+        ["old","modern","historic","past"],
+        1
+      ),
+
+      makeQuestion(
+        "Which sentence contains a simile?",
+        [
+          "The sun is bright.",
+          "He ran like the wind.",
+          "The dog barked.",
+          "She opened the door."
+        ],
+        1
+      ),
+
+      makeQuestion(
+        "What does dialogue show?",
+        [
+          "Characters speaking",
+          "Only scenery",
+          "Only punctuation",
+          "The title"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion(
+        "What is a metaphor?",
+        [
+          "A direct comparison",
+          "A question",
+          "A punctuation mark",
+          "A paragraph"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is personification?",
+        [
+          "Giving human qualities to non-human things",
+          "Using only facts",
+          "Repeating a paragraph",
+          "Using a question"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a protagonist?",
+        [
+          "The main character",
+          "The setting",
+          "The author",
+          "The ending"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a synonym?",
+        [
+          "A word with a similar meaning",
+          "A word with the opposite meaning",
+          "A punctuation mark",
+          "A sentence"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is an antonym?",
+        [
+          "A similar word",
+          "An opposite word",
+          "A repeated word",
+          "A noun"
+        ],
+        1
+      ),
+
+      makeQuestion(
+        "What does atmosphere mean in a story?",
+        [
+          "The mood or feeling",
+          "The number of characters",
+          "The page number",
+          "The author's name"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is alliteration?",
+        [
+          "Repeated initial sounds",
+          "A comparison using like",
+          "A question",
+          "A conclusion"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a first-person narrator likely to use?",
+        ["I","They","He","She"],
+        0
+      ),
+
+      makeQuestion(
+        "What is a theme?",
+        [
+          "A central idea",
+          "A character's name",
+          "A punctuation mark",
+          "A chapter number"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Why might an author use repetition?",
+        [
+          "To emphasise an idea",
+          "To remove meaning",
+          "To hide the setting",
+          "To shorten every sentence"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion(
+        "Which technique compares two things using 'like' or 'as'?",
+        ["Metaphor","Simile","Alliteration","Irony"],
+        1
+      ),
+
+      makeQuestion(
+        "What does diction mean?",
+        [
+          "The writer's choice of words",
+          "The length of a book",
+          "The number of characters",
+          "The title"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What can a short sentence create?",
+        [
+          "Tension or emphasis",
+          "Only happiness",
+          "A longer setting",
+          "A new character"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a rhetorical question?",
+        [
+          "A question not necessarily expecting an answer",
+          "A question with no punctuation",
+          "A mathematical question",
+          "A sentence without a verb"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is juxtaposition?",
+        [
+          "Placing contrasting ideas close together",
+          "Repeating the same word",
+          "Using a rhyme",
+          "Changing tense"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is imagery?",
+        [
+          "Language that creates a mental picture",
+          "A title",
+          "A character list",
+          "A punctuation rule"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What does suspense make the reader feel?",
+        [
+          "Uncertainty or anticipation",
+          "Only laughter",
+          "Confusion about grammar",
+          "Nothing"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a semantic field?",
+        [
+          "A group of words linked by meaning",
+          "A paragraph",
+          "A punctuation mark",
+          "A character"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Why might an author change the sentence length?",
+        [
+          "To affect pace and emphasis",
+          "To change the font",
+          "To remove characters",
+          "To change the title"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is foreshadowing?",
+        [
+          "A hint about something that may happen later",
+          "A summary of the ending",
+          "A description of punctuation",
+          "A character speaking"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion(
+        "What is pathetic fallacy?",
+        [
+          "Giving nature human emotions",
+          "Using a simile",
+          "Repeating dialogue",
+          "Using statistics"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is dramatic irony?",
+        [
+          "The audience knows something a character does not",
+          "A character tells a joke",
+          "The story has no ending",
+          "The narrator disappears"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is structural contrast?",
+        [
+          "Placing different ideas or scenes against each other",
+          "Using only short sentences",
+          "Removing paragraphs",
+          "Repeating one word"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What does tone describe?",
+        [
+          "The writer's attitude or feeling",
+          "The number of pages",
+          "The setting only",
+          "The characters' names"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a cyclical structure?",
+        [
+          "Ending in a way that connects to the beginning",
+          "Having no beginning",
+          "Using only dialogue",
+          "Writing one sentence"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is an extended metaphor?",
+        [
+          "A metaphor developed across a longer passage",
+          "A single adjective",
+          "A question",
+          "A rhyme"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What does connotation mean?",
+        [
+          "The associations suggested by a word",
+          "Its spelling only",
+          "Its syllable count",
+          "Its punctuation"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a motif?",
+        [
+          "A recurring idea, image or element",
+          "A character",
+          "A title",
+          "A sentence"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is narrative perspective?",
+        [
+          "The viewpoint from which a story is told",
+          "The story's font",
+          "The page number",
+          "The punctuation"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What can a caesura create in poetry?",
+        [
+          "A pause or break",
+          "A new character",
+          "A rhyme scheme",
+          "A paragraph"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion(
+      "What is an unreliable narrator?",
+      [
+        "A narrator whose account may not be fully trustworthy",
+        "A narrator who never speaks",
+        "A narrator who only uses dialogue",
+        "A narrator who is always the villain"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is enjambment?",
+      [
+        "A sentence continuing beyond a line break",
+        "A repeated consonant",
+        "A rhyme",
+        "A stanza title"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is a volta in poetry?",
+      [
+        "A significant turn in thought or argument",
+        "The final punctuation mark",
+        "A repeated rhyme",
+        "The title"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is anaphora?",
+      [
+        "Repetition at the beginning of successive clauses or lines",
+        "Repetition at the end only",
+        "A metaphor",
+        "A rhyme"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is semantic ambiguity?",
+      [
+        "When language allows more than one interpretation",
+        "When spelling is wrong",
+        "When a sentence has no verb",
+        "When a poem has no rhyme"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is free indirect discourse?",
+      [
+        "Narrative that blends a character's thoughts with third-person narration",
+        "A direct quotation",
+        "A poem without rhyme",
+        "A speech"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is intertextuality?",
+      [
+        "A text's relationship with other texts",
+        "The number of paragraphs",
+        "The use of punctuation",
+        "The setting"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is a lexical field?",
+      [
+        "A set of words associated with a particular subject",
+        "A sentence structure",
+        "A punctuation mark",
+        "A character"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is caesura?",
+      [
+        "A deliberate pause within a line",
+        "A repeated vowel",
+        "A character",
+        "A metaphor"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is dramatic monologue?",
+      [
+        "A poem or speech delivered by one speaker",
+        "A conversation between two characters",
+        "A narrator's summary",
+        "A stage direction"
+      ],
+      0
+    )
+
+  ];
+
+}
+
+
+/* =========================================================
+   SCIENCE
+========================================================= */
+
+function scienceQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion(
+        "What do humans need to breathe?",
+        ["Oxygen","Chocolate","Sand","Plastic"],
+        0
+      ),
+
+      makeQuestion(
+        "Which organ helps you see?",
+        ["Ear","Eye","Nose","Hand"],
+        1
+      ),
+
+      makeQuestion(
+        "Which is a living thing?",
+        ["Rock","Tree","Chair","Cup"],
+        1
+      ),
+
+      makeQuestion(
+        "What gives Earth light during the day?",
+        ["Moon","Sun","Mars","Cloud"],
+        1
+      ),
+
+      makeQuestion(
+        "Which animal lays eggs?",
+        ["Chicken","Cat","Dog","Cow"],
+        0
+      ),
+
+      makeQuestion(
+        "What state is ice?",
+        ["Solid","Liquid","Gas","Plasma"],
+        0
+      ),
+
+      makeQuestion(
+        "What do plants need to grow?",
+        ["Light","Plastic","Metal","Glass"],
+        0
+      ),
+
+      makeQuestion(
+        "Which sense uses your ears?",
+        ["Sight","Hearing","Taste","Touch"],
+        1
+      ),
+
+      makeQuestion(
+        "What is rain?",
+        ["Water","Rock","Gasoline","Metal"],
+        0
+      ),
+
+      makeQuestion(
+        "Which is a source of light?",
+        ["Sun","Rock","Book","Spoon"],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g <= 4){
+
+    return [
+
+      makeQuestion(
+        "What is the basic unit of life?",
+        ["Cell","Organ","Bone","Tissue"],
+        0
+      ),
+
+      makeQuestion(
+        "Which force pulls objects towards Earth?",
+        ["Gravity","Friction","Magnetism","Push"],
+        0
+      ),
+
+      makeQuestion(
+        "Which material is usually a good electrical conductor?",
+        ["Copper","Rubber","Plastic","Wood"],
+        0
+      ),
+
+      makeQuestion(
+        "What happens when water freezes?",
+        [
+          "It becomes solid",
+          "It becomes gas",
+          "It disappears",
+          "It becomes metal"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which organ pumps blood?",
+        ["Heart","Lung","Brain","Stomach"],
+        0
+      ),
+
+      makeQuestion(
+        "What gas do plants take in for photosynthesis?",
+        ["Oxygen","Carbon dioxide","Hydrogen","Helium"],
+        1
+      ),
+
+      makeQuestion(
+        "What is friction?",
+        [
+          "A force that opposes motion",
+          "A type of light",
+          "A gas",
+          "A sound"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which planet is closest to the Sun?",
+        ["Earth","Mars","Mercury","Jupiter"],
+        2
+      ),
+
+      makeQuestion(
+        "What is evaporation?",
+        [
+          "Liquid changing into gas",
+          "Gas changing into liquid",
+          "Solid changing into liquid",
+          "Liquid changing into solid"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which part of a plant absorbs water?",
+        ["Roots","Flowers","Fruit","Seeds"],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion(
+        "What is photosynthesis?",
+        [
+          "The process plants use to make food using light",
+          "The process animals use to breathe",
+          "The movement of planets",
+          "The melting of rocks"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is an ecosystem?",
+        [
+          "Living organisms and their environment",
+          "A single animal",
+          "Only plants",
+          "Only rocks"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a chemical change?",
+        [
+          "A change that forms new substances",
+          "A change in shape only",
+          "A change in size only",
+          "A change in position"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which particle has a negative charge?",
+        ["Proton","Electron","Neutron","Nucleus"],
+        1
+      ),
+
+      makeQuestion(
+        "What is density?",
+        [
+          "Mass per unit volume",
+          "Volume per unit time",
+          "Force per distance",
+          "Energy per mass"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a conductor?",
+        [
+          "A material that allows energy or electricity to pass easily",
+          "A material that always breaks",
+          "A gas",
+          "A type of cell"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a microorganism?",
+        [
+          "A very small organism",
+          "A large animal",
+          "A planet",
+          "A mineral"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a force?",
+        [
+          "A push or pull",
+          "A type of matter",
+          "A temperature",
+          "A colour"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which organelle contains genetic material in many cells?",
+        ["Nucleus","Cell wall","Vacuole","Cytoplasm"],
+        0
+      ),
+
+      makeQuestion(
+        "What is an insulator?",
+        [
+          "A material that resists the movement of energy",
+          "A good conductor",
+          "A battery",
+          "A force"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion(
+        "Which structure controls many activities of a cell?",
+        ["Nucleus","Cell wall","Vacuole","Ribosome"],
+        0
+      ),
+
+      makeQuestion(
+        "Which particle has a positive charge?",
+        ["Electron","Proton","Neutron","Atom"],
+        1
+      ),
+
+      makeQuestion(
+        "Which particle has no electrical charge?",
+        ["Proton","Electron","Neutron","Ion"],
+        2
+      ),
+
+      makeQuestion(
+        "What is a microorganism?",
+        [
+          "An organism too small to see easily without magnification",
+          "A large organism",
+          "A metal",
+          "A planet"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which material is usually a good conductor?",
+        ["Copper","Rubber","Plastic","Glass"],
+        0
+      ),
+
+      makeQuestion(
+        "What is gravity?",
+        [
+          "An attractive force between masses",
+          "A type of energy",
+          "A chemical reaction",
+          "A sound wave"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What happens when a material undergoes a chemical change?",
+        [
+          "New substances can form",
+          "Its atoms disappear",
+          "Its mass always becomes zero",
+          "It becomes a planet"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "Which organelle is associated with aerobic respiration?",
+        ["Mitochondrion","Nucleus","Cell wall","Vacuole"],
+        0
+      ),
+
+      makeQuestion(
+        "What is current?",
+        [
+          "The rate of flow of electric charge",
+          "The resistance of a wire",
+          "The voltage of a battery",
+          "The mass of an electron"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a metal generally good at conducting?",
+        ["Electricity","Wood","Sound only","Plastic"],
+        0
+      )
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion(
+        "What is the role of mitochondria?",
+        [
+          "They are the main site of aerobic respiration",
+          "They store DNA only",
+          "They make cell walls",
+          "They control light"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is an ion?",
+        [
+          "A charged particle or atom",
+          "A neutral molecule only",
+          "A type of cell",
+          "A wave"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is the formula for speed?",
+        [
+          "distance ÷ time",
+          "time ÷ distance",
+          "distance × time",
+          "mass × acceleration"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is the pH of a neutral solution?",
+        ["0","5","7","14"],
+        2
+      ),
+
+      makeQuestion(
+        "What is an isotope?",
+        [
+          "Atoms of the same element with different numbers of neutrons",
+          "Different elements with the same mass",
+          "Charged electrons",
+          "Different compounds"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is resistance?",
+        [
+          "Opposition to electric current",
+          "Electric charge",
+          "Mass",
+          "Temperature"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is a catalyst?",
+        [
+          "A substance that changes reaction rate without being used up",
+          "A type of reactant",
+          "A product",
+          "A gas only"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What is the unit of force?",
+        ["Joule","Newton","Watt","Volt"],
+        1
+      ),
+
+      makeQuestion(
+        "What is kinetic energy?",
+        [
+          "Energy associated with motion",
+          "Energy stored in a chemical bond only",
+          "Energy of position only",
+          "Electrical resistance"
+        ],
+        0
+      ),
+
+      makeQuestion(
+        "What does DNA carry?",
+        [
+          "Genetic information",
+          "Electrical current",
+          "Sound",
+          "Heat"
+        ],
+        0
+      )
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion(
+      "What is the relationship between current, voltage and resistance?",
+      [
+        "V = IR",
+        "V = I/R",
+        "I = VR",
+        "R = VI"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is activation energy?",
+      [
+        "The minimum energy needed for a reaction to occur",
+        "The energy released by every reaction",
+        "The mass of a catalyst",
+        "The energy of an electron only"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is an equilibrium position?",
+      [
+        "The state where forward and reverse reaction rates are equal",
+        "A reaction that has stopped",
+        "A reaction with no products",
+        "A reaction at zero temperature"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is the unit of power?",
+      ["Joule","Watt","Newton","Volt"],
+      1
+    ),
+
+    makeQuestion(
+      "What is the function of an enzyme?",
+      [
+        "To catalyse biological reactions",
+        "To store electricity",
+        "To carry oxygen only",
+        "To form bones"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is a vector quantity?",
+      [
+        "A quantity with magnitude and direction",
+        "A quantity with magnitude only",
+        "A number with no units",
+        "A scalar only"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is momentum?",
+      [
+        "Mass × velocity",
+        "Mass × acceleration",
+        "Force × time²",
+        "Energy ÷ distance"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is the first law of thermodynamics related to?",
+      [
+        "Conservation of energy",
+        "Conservation of mass only",
+        "Gravity",
+        "Electric charge only"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is a covalent bond?",
+      [
+        "A bond involving shared pairs of electrons",
+        "A bond involving only protons",
+        "A gravitational force",
+        "A magnetic field"
+      ],
+      0
+    ),
+
+    makeQuestion(
+      "What is an oxidation reaction commonly associated with?",
+      [
+        "Loss of electrons",
+        "Gain of electrons",
+        "Loss of protons",
+        "Gain of neutrons"
+      ],
+      0
+    )
+
+  ];
+
+}
+
+
+/* =========================================================
+   FRENCH
+========================================================= */
+
+function frenchQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion("What does 'bonjour' mean?",
+        ["Hello","Goodbye","Thank you","Please"],0),
+
+      makeQuestion("What does 'chat' mean?",
+        ["Dog","Cat","House","Book"],1),
+
+      makeQuestion("What does 'rouge' mean?",
+        ["Blue","Green","Red","Yellow"],2),
+
+      makeQuestion("What does 'oui' mean?",
+        ["No","Yes","Maybe","Hello"],1),
+
+      makeQuestion("What does 'merci' mean?",
+        ["Please","Thanks","Goodbye","Sorry"],1),
+
+      makeQuestion("What does 'livre' mean?",
+        ["Book","Pen","Chair","School"],0),
+
+      makeQuestion("What does 'école' mean?",
+        ["Home","School","Shop","Park"],1),
+
+      makeQuestion("What does 'un' mean?",
+        ["One","Two","Three","Four"],0),
+
+      makeQuestion("What does 'bleu' mean?",
+        ["Blue","Black","White","Red"],0),
+
+      makeQuestion("What does 'au revoir' mean?",
+        ["Hello","Goodbye","Thanks","Yes"],1)
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion("What is the French word for 'house'?",
+        ["maison","chien","livre","école"],0),
+
+      makeQuestion("What is the French word for 'friend'?",
+        ["ami","chat","père","mère"],0),
+
+      makeQuestion("What does 'j'aime' mean?",
+        ["I have","I like","I am","I go"],1),
+
+      makeQuestion("What does 'je suis' mean?",
+        ["I have","I like","I am","I want"],2),
+
+      makeQuestion("What is 'les'?",
+        ["A plural article","A verb","A noun","A colour"],0),
+
+      makeQuestion("What does 'manger' mean?",
+        ["To eat","To sleep","To run","To read"],0),
+
+      makeQuestion("What does 'livres' mean?",
+        ["Books","Pens","Schools","Houses"],0),
+
+      makeQuestion("What does 'petit' mean?",
+        ["Big","Small","Fast","Old"],1),
+
+      makeQuestion("What does 'rouge' mean?",
+        ["Red","Green","Blue","Black"],0),
+
+      makeQuestion("What does 'comment ça va?' mean?",
+        ["Where are you?","How are you?","What is your name?","What time is it?"],1)
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion("What does 'je suis en train de lire' mean?",
+        ["I am reading","I read yesterday","I will read","I cannot read"],0),
+
+      makeQuestion("Which French verb means 'to have'?",
+        ["être","avoir","aller","faire"],1),
+
+      makeQuestion("Which French verb means 'to be'?",
+        ["avoir","être","faire","prendre"],1),
+
+      makeQuestion("What does 'j'ai douze ans' mean?",
+        ["I am twelve years old","I have twelve books","I live in twelve","I want twelve"],0),
+
+      makeQuestion("What is the French word for 'because'?",
+        ["mais","parce que","et","ou"],1),
+
+      makeQuestion("What does 'il y a' mean?",
+        ["There is/there are","I have","He goes","They are"],0),
+
+      makeQuestion("What does 'demain' mean?",
+        ["Yesterday","Today","Tomorrow","Morning"],2),
+
+      makeQuestion("What does 'hier' mean?",
+        ["Today","Yesterday","Tomorrow","Night"],1),
+
+      makeQuestion("What does 'toujours' mean?",
+        ["Never","Sometimes","Always","Soon"],2),
+
+      makeQuestion("What does 'jamais' mean?",
+        ["Always","Never","Often","Today"],1)
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion("Which tense is 'j'ai mangé'?",
+        ["Present","Perfect/past construction","Future","Imperfect only"],1),
+
+      makeQuestion("What does 'cependant' mean?",
+        ["However","Because","Therefore","Before"],0),
+
+      makeQuestion("What does 'puisque' usually introduce?",
+        ["A reason","A question","A colour","A place"],0),
+
+      makeQuestion("What does 'il faudrait' suggest?",
+        ["It would be necessary / one should","It is raining","He has eaten","They arrived"],0),
+
+      makeQuestion("Which word means 'although'?",
+        ["bien que","parce que","donc","mais"],0),
+
+      makeQuestion("What does 'pourtant' mean?",
+        ["However/nevertheless","Because","Before","After"],0),
+
+      makeQuestion("What does 'souvent' mean?",
+        ["Often","Never","Always","Rarely"],0),
+
+      makeQuestion("Which is a French future construction?",
+        ["je vais partir","je suis parti","je partais","je pars"],0),
+
+      makeQuestion("What does 'il faut' mean?",
+        ["It is necessary","He is going","He has","It is cold"],0),
+
+      makeQuestion("What does 'en revanche' mean?",
+        ["On the other hand","For example","Because","At first"],0)
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion("What does 'bien que' usually require?",
+      ["The subjunctive","The infinitive only","The future only","No verb"],0),
+
+    makeQuestion("What does 'quoique' mean?",
+      ["Although","Because","Therefore","Since"],0),
+
+    makeQuestion("What does 'néanmoins' mean?",
+      ["Nevertheless","Because","Soon","Before"],0),
+
+    makeQuestion("What does 'afin que' express?",
+      ["Purpose","Cause","Time","Contrast"],0),
+
+    makeQuestion("What does 'tandis que' commonly express?",
+      ["Contrast or simultaneity","Cause only","Purpose only","Condition only"],0),
+
+    makeQuestion("What does 'ce qui' mean?",
+      ["What/that which","Because","Although","Where"],0),
+
+    makeQuestion("What does 'malgré' mean?",
+      ["Despite","Because","Before","Therefore"],0),
+
+    makeQuestion("Which form is commonly used after 'il faut que'?",
+      ["Subjunctive","Infinitive only","Past participle only","Future infinitive"],0),
+
+    makeQuestion("What does 'en ce qui concerne' mean?",
+      ["Regarding","Because","Although","Before"],0),
+
+    makeQuestion("What does 'cependant' express?",
+      ["Contrast","Cause","Purpose","Sequence"],0)
+
+  ];
+
+}
+
+
+/* =========================================================
+   GEOGRAPHY
+========================================================= */
+
+function geographyQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion("What is a map used for?",
+        ["Showing places","Cooking food","Measuring temperature","Making music"],0),
+
+      makeQuestion("Which is an ocean?",
+        ["Atlantic","Africa","London","Everest"],0),
+
+      makeQuestion("Which is a continent?",
+        ["Africa","Amazon","Nile","Pacific"],0),
+
+      makeQuestion("What is weather?",
+        ["Conditions of the atmosphere","A type of rock","A country","A river"],0),
+
+      makeQuestion("Which is a river?",
+        ["Nile","Sahara","Alps","Atlantic"],0),
+
+      makeQuestion("What is a mountain?",
+        ["A high area of land","A river","An ocean","A city"],0),
+
+      makeQuestion("Which direction is opposite north?",
+        ["East","West","South","North"],2),
+
+      makeQuestion("What is a compass used for?",
+        ["Finding direction","Measuring weight","Cooking","Drawing animals"],0),
+
+      makeQuestion("What is a desert?",
+        ["A very dry area","A wet forest","A river","A city"],0),
+
+      makeQuestion("Which is a country?",
+        ["Ghana","Nile","Atlantic","Sahara"],0)
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion("What is erosion?",
+        ["The wearing away of material","The creation of rain","The growth of cities","The formation of clouds"],0),
+
+      makeQuestion("What is deposition?",
+        ["The dropping of transported material","The movement of clouds","The heating of rocks","The creation of wind"],0),
+
+      makeQuestion("What is a settlement?",
+        ["A place where people live","A type of river","A mountain","A climate"],0),
+
+      makeQuestion("What is climate?",
+        ["Long-term atmospheric patterns","Today's weather only","A type of soil","A river process"],0),
+
+      makeQuestion("What is a renewable resource?",
+        ["A resource that can naturally replenish","A resource that never exists","A type of rock","A city"],0),
+
+      makeQuestion("What is population density?",
+        ["People per unit area","Total rainfall","Average temperature","River speed"],0),
+
+      makeQuestion("What is urbanisation?",
+        ["Growth of towns and cities","Movement to mountains","River erosion","Forest growth"],0),
+
+      makeQuestion("What is a tributary?",
+        ["A smaller river joining a larger river","A mountain","A lake","A desert"],0),
+
+      makeQuestion("What is a flood?",
+        ["Water covering normally dry land","A drought","A heatwave","A landslide"],0),
+
+      makeQuestion("What is a drought?",
+        ["A prolonged period of unusually low rainfall","Heavy rainfall","A river flood","A volcanic eruption"],0)
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion("What is hydraulic action?",
+        ["Erosion caused by water pressure","Deposition by wind","Chemical weathering","Movement of people"],0),
+
+      makeQuestion("What is abrasion in a river?",
+        ["River load scraping the channel","Water evaporating","A river flooding","A tributary forming"],0),
+
+      makeQuestion("When is deposition likely?",
+        ["When a river loses energy","When velocity always increases","When rainfall stops forever","When a river becomes steeper"],0),
+
+      makeQuestion("What is a meander?",
+        ["A bend in a river","A mountain peak","A type of cloud","A desert"],0),
+
+      makeQuestion("What is a floodplain?",
+        ["Flat land beside a river that can flood","A mountain","A coastal cliff","A desert"],0),
+
+      makeQuestion("What is a drainage basin?",
+        ["The area drained by a river and its tributaries","A single lake","A mountain range","A coastline"],0),
+
+      makeQuestion("What is a watershed?",
+        ["A boundary separating drainage basins","A river mouth","A beach","A flood"],0),
+
+      makeQuestion("What is longshore drift?",
+        ["Movement of sediment along a coastline","River erosion","Wind formation","Rainfall"],0),
+
+      makeQuestion("What is weathering?",
+        ["Breakdown of rock in place","Movement of people","Transport of rivers only","Cloud formation"],0),
+
+      makeQuestion("What is a delta?",
+        ["Depositional landform at some river mouths","A mountain","A glacier","A desert"],0)
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion("What is the water cycle?",
+        ["Continuous movement of water between Earth systems","Movement of rocks","Formation of cities","Ocean currents only"],0),
+
+      makeQuestion("What is infiltration?",
+        ["Water entering the soil","Water flowing over land","Water evaporating","Water freezing"],0),
+
+      makeQuestion("What is surface runoff?",
+        ["Water flowing over the land surface","Water stored underground","Water vapour","Snowfall"],0),
+
+      makeQuestion("What is a storm hydrograph?",
+        ["A graph showing river discharge after rainfall","A population graph","A climate map","A rock diagram"],0),
+
+      makeQuestion("What does lag time measure?",
+        ["Time between peak rainfall and peak discharge","Total rainfall","River width","Temperature"],0),
+
+      makeQuestion("What is urban heat island effect?",
+        ["Urban areas being warmer than surrounding rural areas","Cities receiving more rain always","Rivers becoming hotter","Mountains growing"],0),
+
+      makeQuestion("What is migration?",
+        ["Movement of people from one place to another","Movement of rivers","Rock erosion","Cloud formation"],0),
+
+      makeQuestion("What is a push factor?",
+        ["A factor encouraging people to leave a place","A factor attracting tourists only","A type of river","A climate zone"],0),
+
+      makeQuestion("What is a pull factor?",
+        ["A factor attracting people to a place","A reason to leave","A type of soil","A mountain"],0),
+
+      makeQuestion("What is sustainable development?",
+        ["Meeting present needs without preventing future generations meeting theirs","Using every resource immediately","Stopping all development","Building only cities"],0)
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion("What is the Coriolis effect?",
+      ["The apparent deflection of moving air or water due to Earth's rotation","Ocean evaporation","Mountain formation","River erosion"],0),
+
+    makeQuestion("What is a carbon sink?",
+      ["A system that absorbs more carbon than it releases","A source of carbon emissions","A type of river","A weather station"],0),
+
+    makeQuestion("What is desertification?",
+      ["Land degradation in dry areas leading towards desert-like conditions","Flooding of cities","Growth of forests","Formation of glaciers"],0),
+
+    makeQuestion("What is the greenhouse effect?",
+      ["Warming caused by atmospheric gases absorbing outgoing radiation","Cooling caused by oceans","Movement of tectonic plates","River erosion"],0),
+
+    makeQuestion("What is a primary economic sector?",
+      ["Extraction of raw materials","Manufacturing","Services","Banking only"],0),
+
+    makeQuestion("What is a secondary economic sector?",
+      ["Manufacturing and processing","Farming only","Retail only","Tourism only"],0),
+
+    makeQuestion("What is a tertiary economic sector?",
+      ["Providing services","Mining","Manufacturing","Farming"],0),
+
+    makeQuestion("What is urban regeneration?",
+      ["Improving or redeveloping declining urban areas","Building only rural villages","Moving rivers","Creating deserts"],0),
+
+    makeQuestion("What is a tectonic plate?",
+      ["A large moving section of Earth's lithosphere","A cloud","A river","A type of mineral"],0),
+
+    makeQuestion("What is subduction?",
+      ["One tectonic plate moving beneath another","Two rivers joining","A mountain eroding","Water evaporating"],0)
+
+  ];
+
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function historyQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion("What is history?",
+        ["The study of the past","The study of planets","The study of numbers","The study of weather"],0),
+
+      makeQuestion("What is a king?",
+        ["A male ruler","A scientist","A farmer","A soldier only"],0),
+
+      makeQuestion("What is a castle?",
+        ["A fortified building","A school","A factory","A ship"],0),
+
+      makeQuestion("What is an ancient civilisation?",
+        ["An organised society from the distant past","A modern city","A computer","A country today"],0),
+
+      makeQuestion("What is an artefact?",
+        ["An object made or used by people in the past","A modern website","A weather event","A planet"],0),
+
+      makeQuestion("What is a museum?",
+        ["A place that preserves and displays objects and information","A type of castle","A battlefield","A farm"],0),
+
+      makeQuestion("Who built many pyramids in ancient Egypt?",
+        ["Ancient Egyptians","Romans","Vikings","Aztecs"],0),
+
+      makeQuestion("What is a timeline?",
+        ["Events arranged in chronological order","A map","A painting","A building"],0),
+
+      makeQuestion("What does ancient mean?",
+        ["Very old","Very new","Very small","Very fast"],0),
+
+      makeQuestion("What is a source?",
+        ["Evidence about the past","A modern game","A type of food","A country"],0)
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion("What was the Roman Empire?",
+        ["A large empire centred on Rome","A medieval school","A modern country","A river"],0),
+
+      makeQuestion("What is a primary source?",
+        ["Evidence created during the period being studied","A modern textbook only","A later opinion","A fictional story"],0),
+
+      makeQuestion("What is a secondary source?",
+        ["A later interpretation or account of the past","An original artefact only","A Roman coin","A diary written at the time"],0),
+
+      makeQuestion("What was feudalism?",
+        ["A medieval social and political system","A modern economic system","An ancient Egyptian religion","A type of weapon"],0),
+
+      makeQuestion("What was the Magna Carta?",
+        ["A charter issued in England in 1215","A Roman law","An Egyptian pyramid","A Viking ship"],0),
+
+      makeQuestion("What is chronology?",
+        ["The ordering of events by time","The study of geography","The study of language","The study of rocks"],0),
+
+      makeQuestion("Why do historians use sources?",
+        ["To investigate the past","To predict weather","To calculate speed","To make maps"],0),
+
+      makeQuestion("What was the Silk Road?",
+        ["A network of trade routes","A Roman army","A medieval castle","A river"],0),
+
+      makeQuestion("What was the Renaissance?",
+        ["A period of cultural and intellectual revival in Europe","A Roman war","A type of ship","A medieval disease"],0),
+
+      makeQuestion("What is bias in a source?",
+        ["A particular viewpoint that may affect how information is presented","A date","A location","A measurement"],0)
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion("Why are historians cautious when using sources?",
+        ["Sources can have limitations and bias","Sources are always false","Sources cannot contain dates","Sources are never useful"],0),
+
+      makeQuestion("What is provenance?",
+        ["The origin or background of a source","The ending of a war","A type of government","A historical date"],0),
+
+      makeQuestion("What is reliability?",
+        ["How trustworthy a source is for a particular question","How old a source is only","How long a source is","How expensive a source is"],0),
+
+      makeQuestion("What is historical significance?",
+        ["The importance of an event, person or development in history","Its exact spelling","Its colour","Its location only"],0),
+
+      makeQuestion("What is causation?",
+        ["The relationship between causes and effects","The order of sources","The size of an army","The age of a building"],0),
+
+      makeQuestion("What is continuity?",
+        ["Things that remain similar over time","A sudden revolution only","A source's author","A battle"],0),
+
+      makeQuestion("What is change?",
+        ["A difference over time","A repeated pattern","A primary source","A date"],0),
+
+      makeQuestion("What is interpretation?",
+        ["A historian's explanation or understanding of the past","A map scale","A population count","A primary source only"],0),
+
+      makeQuestion("Why can two historians disagree?",
+        ["They may interpret evidence differently","History has no evidence","Dates never exist","Sources cannot be compared"],0),
+
+      makeQuestion("What is a historical argument?",
+        ["A claim supported by evidence and reasoning","A random opinion","A date list","A map"],0)
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion("What is historiography?",
+        ["The study of how history is written and interpreted","The study of geography","The study of ancient weapons","The study of maps"],0),
+
+      makeQuestion("What is historical context?",
+        ["The circumstances surrounding an event or source","A source's font","A person's name","A date only"],0),
+
+      makeQuestion("What is corroboration?",
+        ["Comparing sources to see where they support or contradict each other","Destroying a source","Writing a timeline","Changing a date"],0),
+
+      makeQuestion("What is anachronism?",
+        ["Something placed in a historical period where it does not belong","A primary source","A battle","A treaty"],0),
+
+      makeQuestion("What is imperialism?",
+        ["A policy of extending power over other territories","A farming system","A religion","A type of trade only"],0),
+
+      makeQuestion("What is nationalism?",
+        ["A strong identification with and loyalty to a nation","A type of monarchy","A farming method","A trade route"],0),
+
+      makeQuestion("What is revolution?",
+        ["A major and often rapid transformation in political or social systems","A minor change in spelling","A type of tax","A map"],0),
+
+      makeQuestion("What is propaganda?",
+        ["Information designed to influence attitudes or opinions","A neutral timetable","A scientific measurement","A source with no purpose"],0),
+
+      makeQuestion("What is a primary account?",
+        ["An account produced by someone with direct involvement or contemporary access","A later textbook only","A fictional novel","A modern summary"],0),
+
+      makeQuestion("Why is context important?",
+        ["It helps explain why events and sources developed as they did","It removes all uncertainty","It replaces evidence","It changes dates"],0)
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion("What is historical methodology?",
+      ["Methods historians use to investigate and interpret the past","A type of government","A battle strategy","A map system"],0),
+
+    makeQuestion("What is revisionist history?",
+      ["An interpretation that challenges or revises an established historical account","A false history","A primary source","A timeline"],0),
+
+    makeQuestion("What is quantitative historical evidence?",
+      ["Evidence expressed in numerical or measurable form","A personal diary","A painting","A speech only"],0),
+
+    makeQuestion("What is qualitative evidence?",
+      ["Non-numerical evidence such as words, descriptions and testimony","Only statistics","Only dates","Only maps"],0),
+
+    makeQuestion("What is historical causation?",
+      ["Analysis of why events happened and their contributing factors","A list of dates","A source's age","A map"],0),
+
+    makeQuestion("What is contingency in history?",
+      ["The idea that outcomes can depend on circumstances and choices","The belief that nothing changes","A source type","A government"],0),
+
+    makeQuestion("What is periodisation?",
+      ["Dividing history into periods for analysis","Writing a diary","Dating an artefact","Drawing a map"],0),
+
+    makeQuestion("What is a historiographical debate?",
+      ["A disagreement among historians about interpretation","A battle","A primary source","A timeline"],0),
+
+    makeQuestion("Why should historians distinguish evidence from interpretation?",
+      ["To avoid treating conclusions as if they were direct evidence","Because evidence is useless","Because interpretations are always wrong","Because sources have no context"],0),
+
+    makeQuestion("What is historical agency?",
+      ["The capacity of people or groups to make choices and affect events","A type of source","A map","A government building"],0)
+
+  ];
+
+}
+
+
+/* =========================================================
+   COMPUTING
+========================================================= */
+
+function computingQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion("What is a computer?",
+        ["An electronic device that processes information","A type of food","A planet","A book"],0),
+
+      makeQuestion("Which device is used to type?",
+        ["Keyboard","Monitor","Speaker","Printer"],0),
+
+      makeQuestion("Which device shows information on a screen?",
+        ["Monitor","Keyboard","Mouse","Microphone"],0),
+
+      makeQuestion("What is a mouse used for?",
+        ["Controlling a pointer","Printing","Playing sound only","Storing paper"],0),
+
+      makeQuestion("What does save mean?",
+        ["Store your work","Delete your work","Print your screen","Turn off the internet"],0),
+
+      makeQuestion("What is a password?",
+        ["Secret information used for access","A monitor","A keyboard","A file type"],0),
+
+      makeQuestion("What is the internet?",
+        ["A global network of connected computers","A single computer","A keyboard","A printer"],0),
+
+      makeQuestion("What is a file?",
+        ["Stored digital information","A keyboard","A cable","A screen"],0),
+
+      makeQuestion("Which device can take a photo?",
+        ["Camera","Keyboard","Printer","Speaker"],0),
+
+      makeQuestion("What should you do with a private password?",
+        ["Keep it secret","Post it online","Share it publicly","Write it on a wall"],0)
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion("What is an algorithm?",
+        ["A step-by-step procedure for solving a problem","A computer screen","A file","A keyboard"],0),
+
+      makeQuestion("What is a variable?",
+        ["A named storage location for a value","A monitor","A network cable","A printer"],0),
+
+      makeQuestion("What is a loop?",
+        ["Code that repeats instructions","A computer virus","A file","A password"],0),
+
+      makeQuestion("What is debugging?",
+        ["Finding and fixing errors in a program","Deleting a computer","Making a password","Printing code"],0),
+
+      makeQuestion("What is a programming language?",
+        ["A formal language used to write computer programs","A spoken language only","A file","A keyboard"],0),
+
+      makeQuestion("What is an input?",
+        ["Data supplied to a system","A result only","A printer","A screen"],0),
+
+      makeQuestion("What is an output?",
+        ["Information produced by a system","A password","A keyboard","A cable"],0),
+
+      makeQuestion("What is a sequence?",
+        ["Instructions carried out in order","Random code","A virus","A database"],0),
+
+      makeQuestion("What is selection?",
+        ["Making a decision based on a condition","Repeating forever","Saving a file","Deleting code"],0),
+
+      makeQuestion("What is a conditional statement?",
+        ["A statement that performs an action depending on a condition","A monitor","A file","A password"],0)
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion("What does HTML mainly define?",
+        ["The structure of a web page","The computer's hardware","A database only","Internet speed"],0),
+
+      makeQuestion("What does CSS control?",
+        ["The presentation and styling of web pages","Computer memory","The CPU","Passwords"],0),
+
+      makeQuestion("What is JavaScript commonly used for?",
+        ["Adding behaviour and interactivity to web pages","Printing documents","Making hardware","Charging batteries"],0),
+
+      makeQuestion("What is binary?",
+        ["A number system using 0 and 1","A programming language only","A database","A web browser"],0),
+
+      makeQuestion("What is a Boolean value?",
+        ["True or false","Any decimal","A file","A password"],0),
+
+      makeQuestion("What is pseudocode?",
+        ["A structured description of an algorithm using readable language","Machine code","A virus","A database"],0),
+
+      makeQuestion("What is decomposition?",
+        ["Breaking a problem into smaller parts","Deleting data","Encrypting a file","Creating a password"],0),
+
+      makeQuestion("What is abstraction?",
+        ["Hiding unnecessary detail while focusing on important features","Deleting an algorithm","Adding random code","Removing all data"],0),
+
+      makeQuestion("What is a flowchart?",
+        ["A diagram showing the steps of a process or algorithm","A spreadsheet","A database","A web page"],0),
+
+      makeQuestion("What is a syntax error?",
+        ["An error caused by code that does not follow language rules","A slow computer","A broken monitor","A lost password"],0)
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion("What is computational thinking?",
+        ["Using logical methods to solve problems computationally","Typing quickly","Using social media","Building a monitor"],0),
+
+      makeQuestion("What is binary search?",
+        ["A search method that repeatedly halves a sorted search space","Searching randomly","A type of encryption","A database"],0),
+
+      makeQuestion("What is a database?",
+        ["An organised collection of data","A programming language","A monitor","A cable"],0),
+
+      makeQuestion("What is SQL?",
+        ["A language commonly used to work with relational databases","A graphics card","An operating system","A web browser"],0),
+
+      makeQuestion("What is encryption?",
+        ["Transforming information to help protect it from unauthorised access","Deleting files","Increasing screen brightness","Compressing air"],0),
+
+      makeQuestion("What is an IP address?",
+        ["An address identifying a device/interface on a network","A password","A file type","A programming language"],0),
+
+      makeQuestion("What is recursion?",
+        ["A function or process that calls itself","A database","A virus","A loop that cannot stop"],0),
+
+      makeQuestion("What is a stack?",
+        ["A data structure following last-in-first-out behaviour","A network","A CPU","A file"],0),
+
+      makeQuestion("What is a queue?",
+        ["A data structure following first-in-first-out behaviour","A password","A web page","A processor"],0),
+
+      makeQuestion("What is an operating system?",
+        ["Software that manages computer hardware and other software","A keyboard","A website","A programming variable"],0)
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion("What is algorithmic complexity?",
+      ["A measure of how resource requirements grow with input size","A programming language","A database","A network cable"],0),
+
+    makeQuestion("What is Big O notation used for?",
+      ["Describing asymptotic growth of algorithm resource usage","Writing HTML","Encrypting passwords","Designing monitors"],0),
+
+    makeQuestion("What is a hash function?",
+      ["A function that maps data to a fixed-size value","A graphics driver","A web page","A loop"],0),
+
+    makeQuestion("What is a compiler?",
+      ["Software that translates source code into another form, often machine code","A database","A monitor","A network"],0),
+
+    makeQuestion("What is polymorphism in programming?",
+      ["Allowing one interface to represent different underlying forms","Deleting classes","Encrypting data","Creating a database"],0),
+
+    makeQuestion("What is an API?",
+      ["A defined interface through which software components communicate","A keyboard","A monitor","A file system"],0),
+
+    makeQuestion("What is normalisation in databases?",
+      ["Organising data to reduce redundancy and improve integrity","Deleting all data","Encrypting passwords","Making a website green"],0),
+
+    makeQuestion("What is machine learning?",
+      ["A field where systems learn patterns from data","A type of keyboard","A database only","A monitor"],0),
+
+    makeQuestion("What is an HTTP request?",
+      ["A message sent using HTTP to communicate with a web server","A password","A local file","A CPU instruction"],0),
+
+    makeQuestion("What is version control?",
+      ["A system for tracking changes to files and collaborating on code","A graphics setting","A keyboard shortcut","A database table"],0)
+
+  ];
+
+}
+
+
+/* =========================================================
+   BUSINESS
+========================================================= */
+
+function businessQuestions(g){
+
+  if(g <= 2){
+
+    return [
+
+      makeQuestion("What is money used for?",
+        ["Buying goods and services","Growing trees","Measuring weather","Writing stories"],0),
+
+      makeQuestion("What is a shop?",
+        ["A place where goods may be sold","A school subject","A planet","A river"],0),
+
+      makeQuestion("What is buying?",
+        ["Getting something in exchange for money","Giving away money only","Making a product","Saving homework"],0),
+
+      makeQuestion("What is selling?",
+        ["Providing goods or services in exchange for payment","Buying a product","Saving money","Writing code"],0),
+
+      makeQuestion("What is saving?",
+        ["Keeping money for later","Spending everything","Borrowing only","Selling goods"],0),
+
+      makeQuestion("What is a customer?",
+        ["Someone who buys goods or services","A machine","A building","A product"],0),
+
+      makeQuestion("What is a product?",
+        ["Something offered to customers","A customer","A bank","A tax"],0),
+
+      makeQuestion("What is a service?",
+        ["An activity provided for someone","A physical object only","A coin","A shop"],0),
+
+      makeQuestion("What is a price?",
+        ["The amount charged for something","A customer","A product","A salary"],0),
+
+      makeQuestion("What is a business?",
+        ["An organisation involved in providing goods or services","A school desk","A planet","A river"],0)
+
+    ];
+
+  }
+
+  if(g <= 6){
+
+    return [
+
+      makeQuestion("What is revenue?",
+        ["Money earned from sales","Money spent","A loan","A tax"],0),
+
+      makeQuestion("What is a cost?",
+        ["Money a business spends","Money earned","Profit only","A customer"],0),
+
+      makeQuestion("What is profit?",
+        ["Revenue minus costs","Costs minus revenue","Sales only","Tax only"],0),
+
+      makeQuestion("What is an entrepreneur?",
+        ["Someone who starts or runs a business venture","A customer only","A bank","A product"],0),
+
+      makeQuestion("What is a budget?",
+        ["A plan for income and spending","A product","A customer","A loan"],0),
+
+      makeQuestion("What is a target market?",
+        ["A group of customers a business aims to serve","A building","A tax","A product"],0),
+
+      makeQuestion("What is advertising?",
+        ["Promoting a product or service","Making a product","Counting money","Paying wages"],0),
+
+      makeQuestion("What is a brand?",
+        ["A recognisable identity associated with a business or product","A tax","A loan","A customer"],0),
+
+      makeQuestion("What is competition?",
+        ["Rivalry between businesses for customers","A type of tax","A salary","A product"],0),
+
+      makeQuestion("What is demand?",
+        ["The quantity consumers are willing and able to buy","Business costs","A loan","Profit"],0)
+
+    ];
+
+  }
+
+  if(g === 7){
+
+    return [
+
+      makeQuestion("What is fixed cost?",
+        ["A cost that does not change with output in the short run","A cost per product only","Revenue","Profit"],0),
+
+      makeQuestion("What is variable cost?",
+        ["A cost that changes with output","A fixed payment","Revenue","Profit"],0),
+
+      makeQuestion("What is break-even?",
+        ["The point where total revenue equals total costs","Maximum profit","Zero sales","Maximum costs"],0),
+
+      makeQuestion("What is market research?",
+        ["Collecting information about customers and markets","Selling products","Paying tax","Hiring staff only"],0),
+
+      makeQuestion("What is a sole trader?",
+        ["A business owned by one person","A public company","A partnership only","A charity only"],0),
+
+      makeQuestion("What is a partnership?",
+        ["A business owned by two or more people","A single-person business","A government department","A product"],0),
+
+      makeQuestion("What is a stakeholder?",
+        ["Someone with an interest in a business","A customer only","A product","A tax"],0),
+
+      makeQuestion("What is cash flow?",
+        ["Movement of cash into and out of a business","Profit only","Sales only","Advertising"],0),
+
+      makeQuestion("What is added value?",
+        ["The difference between the selling price and cost of bought-in materials/components","Total revenue","Total cost","A salary"],0),
+
+      makeQuestion("What is productivity?",
+        ["Output produced relative to inputs used","Total profit only","Number of customers only","Advertising spending"],0)
+
+    ];
+
+  }
+
+  if(g <= 9){
+
+    return [
+
+      makeQuestion("What is price elasticity of demand?",
+        ["How responsive quantity demanded is to a change in price","Total profit","Business size","Market share"],0),
+
+      makeQuestion("What is market share?",
+        ["A business's proportion of total market sales","Total costs","Revenue only","A loan"],0),
+
+      makeQuestion("What is economies of scale?",
+        ["Lower average costs as output increases due to scale advantages","Higher wages","Higher prices","Lower revenue"],0),
+
+      makeQuestion("What is gross profit?",
+        ["Revenue minus cost of sales","Revenue minus all expenses","Sales only","Assets minus liabilities"],0),
+
+      makeQuestion("What is net profit?",
+        ["Profit after relevant operating expenses are deducted","Revenue only","Sales minus inventory","Assets only"],0),
+
+      makeQuestion("What is an asset?",
+        ["A resource owned or controlled by a business","A cost only","A loan only","A customer"],0),
+
+      makeQuestion("What is a liability?",
+        ["An obligation or amount owed by a business","An asset","Revenue","Profit"],0),
+
+      makeQuestion("What is a balance sheet?",
+        ["A statement showing assets, liabilities and equity at a point in time","A sales advertisement","A marketing plan","A cash receipt"],0),
+
+      makeQuestion("What is market segmentation?",
+        ["Dividing a market into groups with shared characteristics","Increasing costs","Reducing staff","Making products"],0),
+
+      makeQuestion("What is a competitive advantage?",
+        ["A factor that helps a business compete effectively","A business cost","A tax","A loan"],0)
+
+    ];
+
+  }
+
+  return [
+
+    makeQuestion("What is opportunity cost?",
+      ["The value of the next best alternative forgone","Total revenue","A fixed cost","Profit"],0),
+
+    makeQuestion("What is marginal cost?",
+      ["The additional cost of producing one more unit","Total fixed cost","Total revenue","Average revenue"],0),
+
+    makeQuestion("What is marginal revenue?",
+      ["The additional revenue from selling one more unit","Total cost","Average cost","Profit"],0),
+
+    makeQuestion("What is price discrimination?",
+      ["Charging different prices to different customers for the same or similar product under certain conditions","Reducing all prices","Increasing wages","Changing suppliers"],0),
+
+    makeQuestion("What is corporate social responsibility?",
+      ["A business's consideration of its social and environmental impacts","Profit only","Advertising only","Tax avoidance"],0),
+
+    makeQuestion("What is liquidity?",
+      ["The ability to meet short-term financial obligations","Long-term profit","Market share","Brand value"],0),
+
+    makeQuestion("What is gearing?",
+      ["A measure comparing certain forms of debt finance with equity","A marketing method","A sales technique","A production method"],0),
+
+    makeQuestion("What is a monopoly?",
+      ["A market dominated by a single supplier","A market with many identical firms","A partnership","A charity"],0),
+
+    makeQuestion("What is an externality?",
+      ["A cost or benefit affecting third parties not directly involved in a transaction","A fixed cost","A business asset","A salary"],0),
+
+    makeQuestion("What is productive efficiency?",
+      ["Producing at the lowest possible average cost given the relevant conditions","Maximising advertising","Increasing prices","Reducing revenue"],0)
+
+  ];
+
+}
+
+
+/* =========================================================
+   ALL QUESTIONS
+========================================================= */
+
+function createQuestions(g, subject){
+
+  switch(subject){
+
+    case "math":
+      return mathQuestions(g);
+
+    case "english":
+      return englishQuestions(g);
+
+    case "science":
+      return scienceQuestions(g);
+
+    case "french":
+      return frenchQuestions(g);
+
+    case "geography":
+      return geographyQuestions(g);
+
+    case "history":
+      return historyQuestions(g);
+
+    case "computing":
+      return computingQuestions(g);
+
+    case "business":
+      return businessQuestions(g);
+
+    default:
+      return [];
+
+  }
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderSubjects(){
+
+  const html = subjects.map(s => `
+
+    <div
+      class="card subjectCard"
+      onclick="openSubject('${s.id}')">
+
+      <div class="subjectIcon">
+        ${s.icon}
+      </div>
+
+      <h3>
+        ${s.name}
+      </h3>
+
+      <p>
+        ${s.desc}
+      </p>
+
+    </div>
+
+  `).join("");
+
+  document.getElementById(
+    "dashboardSubjects"
+  ).innerHTML = html;
+
+  document.getElementById(
+    "learnSubjects"
+  ).innerHTML = html;
+
+}
+
+
+function openSubject(id){
+
+  showPage("learn");
+
+  loadLesson(id);
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document.querySelectorAll(".nav button").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const page = button.dataset.page;
+
+    showPage(page);
+
+    document
+      .querySelectorAll(".nav button")
+      .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document
+      .getElementById("sidebar")
+      .classList.remove("open");
+
+  });
+
+});
+
+
+function showPage(page){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
+
+  const target =
+    document.getElementById(page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  const titles = {
+
+    home:"Dashboard",
+    learn:"Learn",
+    quiz:"Quizzes",
+    assistant:"Study GPT",
+    progress:"Progress",
+    about:"About"
+
+  };
+
+  document.getElementById(
+    "pageTitle"
+  ).textContent = titles[page] || "EcoleRonsardHub";
+
+}
+
+
+/* =========================================================
+   GRADE CHANGE
+========================================================= */
+
+document
+  .getElementById("gradeSelect")
+  .addEventListener("change", function(){
+
+    grade = Number(this.value);
+
+    localStorage.setItem(
+      "er_grade",
+      grade
+    );
+
+    updateGradeUI();
+
+    renderSubjects();
+
+    loadQuizSubjects();
+
+    document.getElementById(
+      "lessonArea"
+    ).innerHTML = "";
+
+  });
+
+
+function updateGradeUI(){
+
+  document.getElementById(
+    "gradePill"
+  ).textContent =
+    "Grade " + grade;
+
+  document.getElementById(
+    "quizGrade"
+  ).textContent =
+    grade;
+
+  document.getElementById(
+    "chatGrade"
+  ).textContent =
+    grade;
+
+  document.getElementById(
+    "currentGradeStat"
+  ).textContent =
+    grade;
+
+}
+
+
+/* =========================================================
+   QUIZ SUBJECTS
+========================================================= */
+
+function loadQuizSubjects(){
+
+  const select =
+    document.getElementById("quizSubject");
+
+  select.innerHTML =
+    subjects.map(s => `
+      <option value="${s.id}">
+        ${s.name}
+      </option>
+    `).join("");
+
+}
+
+
+/* =========================================================
+   START QUIZ
+========================================================= */
+
+function startQuiz(){
+
+  const subject =
+    document.getElementById(
+      "quizSubject"
+    ).value;
+
+  /*
+    THIS LINE IS THE MAIN FIX.
+
+    It uses BOTH:
+
+    grade
+    subject
+
+    Example:
+
+    createQuestions(1,"math")
+    createQuestions(7,"math")
+    createQuestions(12,"math")
+
+    are all different.
+  */
+
+  const questions =
+    createQuestions(
+      grade,
+      subject
+    );
+
+  if(!questions.length){
+
+    document.getElementById(
+      "quizArea"
+    ).innerHTML = `
+      <p class="muted">
+        No questions are available yet.
+      </p>
+    `;
+
+    return;
+
+  }
+
+  quizState = {
+
+    questions:shuffle(questions).slice(0,10),
+
+    index:0,
+
+    score:0,
+
+    locked:false
+
+  };
+
+  showQuestion();
+
+}
+
+
+/* =========================================================
+   SHOW QUESTION
+========================================================= */
+
+function showQuestion(){
+
+  const q =
+    quizState.questions[
+      quizState.index
+    ];
+
+  document.getElementById(
+    "quizProgress"
+  ).style.width =
+    (
+      quizState.index /
+      quizState.questions.length *
+      100
+    ) + "%";
+
+
+  document.getElementById(
+    "quizArea"
+  ).innerHTML = `
+
+    <div class="muted">
+      Grade ${grade} •
+      Question
+      ${quizState.index + 1}
+      of
+      ${quizState.questions.length}
+    </div>
+
+    <div class="quizQuestion">
+      ${q[0]}
+    </div>
+
+    <div class="options">
+
+      ${q[1].map((option,index) => `
+
+        <button
+          class="option"
+          onclick="answer(${index})">
+
+          ${String.fromCharCode(65 + index)}.
+          ${option}
+
+        </button>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+function answer(index){
+
+  if(quizState.locked){
+    return;
+  }
+
+  quizState.locked = true;
+
+  const q =
+    quizState.questions[
+      quizState.index
+    ];
+
+  const buttons =
+    document.querySelectorAll(".option");
+
+
+  buttons[q[2]]
+    .classList
+    .add("correct");
+
+
+  if(index !== q[2]){
+
+    buttons[index]
+      .classList
+      .add("wrong");
+
+  }else{
+
+    quizState.score++;
+
+  }
+
+
+  setTimeout(() => {
+
+    quizState.index++;
+
+    quizState.locked = false;
+
+    if(
+      quizState.index <
+      quizState.questions.length
+    ){
+
+      showQuestion();
+
+    }else{
+
+      finishQuiz();
+
+    }
+
+  },650);
+
+}
+
+
+/* =========================================================
+   FINISH QUIZ
+========================================================= */
+
+function finishQuiz(){
+
+  const total =
+    quizState.questions.length;
+
+  const percentage =
+    Math.round(
+      quizState.score /
+      total *
+      100
+    );
+
+  completed++;
+
+  if(percentage > best){
+    best = percentage;
+  }
+
+  localStorage.setItem(
+    "er_completed",
+    completed
+  );
+
+  localStorage.setItem(
+    "er_best",
+    best
+  );
+
+  updateProgress();
+
+
+  document.getElementById(
+    "quizProgress"
+  ).style.width = "100%";
+
+
+  document.getElementById(
+    "quizArea"
+  ).innerHTML = `
+
+    <div style="text-align:center;padding:30px">
+
+      <h2>
+        Quiz complete 🎉
+      </h2>
+
+      <p>
+        Grade ${grade}
+      </p>
+
+      <p style="font-size:30px;font-weight:900;color:var(--primary)">
+        ${quizState.score}/${total}
+      </p>
+
+      <p>
+        Score: <strong>${percentage}%</strong>
+      </p>
+
+      <button
+        class="btn primary"
+        onclick="startQuiz()">
+
+        Try again
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LESSONS
+========================================================= */
+
+function loadLesson(id){
+
+  const subject =
+    subjects.find(s => s.id === id);
+
+  if(!subject){
+    return;
+  }
+
+
+  const lessonData = {
+
+    math:{
+
+      title:"Mathematics",
+
+      sections:[
+
+        ["Core skills",
+         "Practise numbers, calculations, patterns and problem solving."],
+
+        ["Grade focus",
+         `This lesson is adapted for Grade ${grade}. Your quiz questions are also generated specifically for Grade ${grade}.`]
+
+      ]
+
+    },
+
+    english:{
+
+      title:"English",
+
+      sections:[
+
+        ["Core skills",
+         "Reading, vocabulary, grammar, writing and analysing language."],
+
+        ["Grade focus",
+         `Your Grade ${grade} questions focus on English skills appropriate to that level.`]
+
+      ]
+
+    },
+
+    science:{
+
+      title:"Science",
+
+      sections:[
+
+        ["Core skills",
+         "Biology, chemistry, physics and scientific investigation."],
+
+        ["Grade focus",
+         `Science questions change according to Grade ${grade}.`]
+
+      ]
+
+    },
+
+    french:{
+
+      title:"French",
+
+      sections:[
+
+        ["Core skills",
+         "Vocabulary, grammar, reading and communication."],
+
+        ["Grade focus",
+         `French practice is adjusted for Grade ${grade}.`]
+
+      ]
+
+    },
+
+    geography:{
+
+      title:"Geography",
+
+      sections:[
+
+        ["Core skills",
+         "Places, people, environments, physical processes and Earth systems."],
+
+        ["Grade focus",
+         `Geography questions are adjusted for Grade ${grade}.`]
+
+      ]
+
+    },
+
+    history:{
+
+      title:"History",
+
+      sections:[
+
+        ["Core skills",
+         "Chronology, evidence, sources, causes, consequences and interpretation."],
+
+        ["Grade focus",
+         `History questions become more analytical as the grade increases.`]
+
+      ]
+
+    },
+
+    computing:{
+
+      title:"Computing",
+
+      sections:[
+
+        ["Core skills",
+         "Algorithms, programming, data, networks and digital systems."],
+
+        ["Grade focus",
+         `Computing questions are different for Grade ${grade}.`]
+
+      ]
+
+    },
+
+    business:{
+
+      title:"Business",
+
+      sections:[
+
+        ["Core skills",
+         "Enterprise, customers, finance, markets and business decisions."],
+
+        ["Grade focus",
+         `Business questions become more advanced for higher grades.`]
+
+      ]
+
+    }
+
+  };
+
+
+  const data =
+    lessonData[id];
+
+
+  document.getElementById(
+    "lessonArea"
+  ).innerHTML = `
+
+    <div class="card lesson">
+
+      <h2>
+        ${data.title}
+      </h2>
+
+      ${data.sections.map(section => `
+
+        <div class="lessonSection">
+
+          <h3>
+            ${section[0]}
+          </h3>
+
+          <p>
+            ${section[1]}
+          </p>
+
+        </div>
+
+      `).join("")}
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   STUDY GPT
+========================================================= */
+
+function addMsg(text,type){
+
+  const messages =
+    document.getElementById(
+      "messages"
+    );
+
+  const div =
+    document.createElement("div");
+
+  div.className =
+    "msg " + type;
+
+  div.textContent = text;
+
+  messages.appendChild(div);
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
+}
+
+
+/* =========================================================
+   SIMPLE MATH SOLVER
+========================================================= */
+
+function solveMath(text){
+
+  let clean =
+    text
+      .replace(/what is/gi,"")
+      .replace(/calculate/gi,"")
+      .replace(/work out/gi,"")
+      .replace(/=/g,"")
+      .trim();
+
+
+  const match =
+    clean.match(
+      /^(-?\d+(?:\.\d+)?)\s*([+\-*×÷x/])\s*(-?\d+(?:\.\d+)?)$/
+    );
+
+
+  if(!match){
+    return null;
+  }
+
+
+  const a =
+    Number(match[1]);
+
+  const op =
+    match[2];
+
+  const b =
+    Number(match[3]);
+
+
+  if(op === "+"){
+    return a + b;
+  }
+
+  if(op === "-"){
+    return a - b;
+  }
+
+  if(
+    op === "*" ||
+    op === "×" ||
+    op.toLowerCase() === "x"
+  ){
+    return a * b;
+  }
+
+  if(
+    op === "/" ||
+    op === "÷"
+  ){
+
+    if(b === 0){
+      return "undefined";
+    }
+
+    return a / b;
+
+  }
+
+  return null;
+
+}
+
+
+function explainMath(text,result){
+
+  return `
+The answer is ${result}.
+
+I calculated it using the operation in your question.
+
+You're currently studying at Grade ${grade} level.
+  `.trim();
+
+}
+
+
+/* =========================================================
+   STUDY KNOWLEDGE
+========================================================= */
+
+function studyKnowledge(text){
+
+  const t =
+    text.toLowerCase();
+
+
+  if(
+    t.includes("fraction") ||
+    t.includes("numerator") ||
+    t.includes("denominator")
+  ){
+
+    return `
+A fraction represents part of a whole.
+
+The numerator is the top number.
+
+The denominator is the bottom number.
+
+Example:
+3/4 means 3 parts out of 4 equal parts.
+    `.trim();
+
+  }
+
+
+  if(t.includes("photosynthesis")){
+
+    return `
+Photosynthesis is the process plants use to make glucose.
+
+Plants use light energy, carbon dioxide and water.
+
+Oxygen is released as a product.
+    `.trim();
+
+  }
+
+
+  if(t.includes("gravity")){
+
+    return `
+Gravity is a force of attraction between masses.
+
+Near Earth, gravity pulls objects towards the Earth.
+    `.trim();
+
+  }
+
+
+  if(
+    t.includes("cell") &&
+    !t.includes("excel")
+  ){
+
+    return `
+A cell is the basic structural and functional unit of living organisms.
+
+Different cells have different structures and functions.
+    `.trim();
+
+  }
+
+
+  if(t.includes("algorithm")){
+
+    return `
+An algorithm is a step-by-step set of instructions for solving a problem or completing a task.
+
+For example:
+
+1. Start
+2. Enter a number
+3. Multiply it by 2
+4. Display the answer
+5. End
+    `.trim();
+
+  }
+
+
+  if(t.includes("latitude")){
+
+    return `
+Latitude measures how far north or south a location is from the Equator.
+
+The Equator is 0° latitude.
+    `.trim();
+
+  }
+
+
+  if(t.includes("longitude")){
+
+    return `
+Longitude measures how far east or west a location is from the Prime Meridian.
+
+The Prime Meridian is 0° longitude.
+    `.trim();
+
+  }
+
+
+  if(t.includes("metaphor")){
+
+    return `
+A metaphor directly describes one thing as another to create a comparison.
+
+Example:
+"The classroom was a zoo."
+
+This does not mean the classroom literally became a zoo.
+    `.trim();
+
+  }
+
+
+  if(t.includes("simile")){
+
+    return `
+A simile compares two things using words such as "like" or "as".
+
+Example:
+"He was as fast as a cheetah."
+    `.trim();
+
+  }
+
+
+  if(t.includes("profit")){
+
+    return `
+Profit is the amount left after costs are subtracted from revenue.
+
+Profit = Revenue - Costs.
+    `.trim();
+
+  }
+
+
+  if(t.includes("html")){
+
+    return `
+HTML is used to structure content on a web page.
+
+For example, HTML can create headings, paragraphs, buttons and images.
+    `.trim();
+
+  }
+
+
+  if(t.includes("css")){
+
+    return `
+CSS is used to style web pages.
+
+It controls things such as colours, spacing, fonts, borders and layouts.
+    `.trim();
+
+  }
+
+
+  if(
+    t.includes("javascript") ||
+    t.includes("java script")
+  ){
+
+    return `
+JavaScript is a programming language commonly used to add behaviour and interactivity to websites.
+    `.trim();
+
+  }
+
+
+  if(
+    t.includes("electron") ||
+    t.includes("proton") ||
+    t.includes("neutron")
+  ){
+
+    return `
+Atoms contain smaller particles.
+
+Protons have a positive charge.
+
+Electrons have a negative charge.
+
+Neutrons have no electrical charge.
+    `.trim();
+
+  }
+
+
+  if(t.includes("noun")){
+
+    return `
+A noun is a word used to name a person, place, thing or idea.
+
+Examples:
+teacher
+London
+book
+happiness
+    `.trim();
+
+  }
+
+
+  if(t.includes("verb")){
+
+    return `
+A verb describes an action or state.
+
+Examples:
+run
+write
+think
+is
+    `.trim();
+
+  }
+
+
+  if(t.includes("adjective")){
+
+    return `
+An adjective describes a noun.
+
+Examples:
+
+red car
+large house
+cold water
+    `.trim();
+
+  }
+
+
+  return null;
+
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+function sendChat(){
+
+  const input =
+    document.getElementById(
+      "chatInput"
+    );
+
+  const text =
+    input.value.trim();
+
+  if(!text){
+    return;
+  }
+
+
+  addMsg(text,"user");
+
+  input.value = "";
+
+
+  let answer = null;
+
+
+  /*
+    First check maths.
+  */
+
+  const looksLikeMath =
+    /(\d+\s*[+\-*×÷x/]\s*\d+)/i.test(text) ||
+    /what is \d+/i.test(text) ||
+    /calculate/i.test(text) ||
+    /work out/i.test(text);
+
+
+  if(looksLikeMath){
+
+    const result =
+      solveMath(text);
+
+    if(result !== null){
+
+      answer =
+        explainMath(
+          text,
+          result
+        );
+
+    }
+
+  }
+
+
+  /*
+    Then check school knowledge.
+  */
+
+  if(!answer){
+
+    answer =
+      studyKnowledge(text);
+
+  }
+
+
+  /*
+    Basic conversation.
+  */
+
+  if(!answer){
+
+    const t =
+      text.toLowerCase();
+
+
+    if(
+      t.includes("hello") ||
+      t.includes("hi") ||
+      t.includes("hey")
+    ){
+
+      answer =
+        `Hey! 👋 I'm ready to help you study at Grade ${grade} level.`;
+
+    }
+
+    else if(
+      t.includes("who are you") ||
+      t.includes("what are you")
+    ){
+
+      answer =
+        `I'm EcoleRonsardHub's Study GPT. I'm currently set to Grade ${grade}.`;
+
+    }
+
+    else if(
+      t.includes("help")
+    ){
+
+      answer = `
+Try asking me:
+
+• What is 45 × 12?
+• What is a fraction?
+• What is photosynthesis?
+• What is an algorithm?
+• What is a metaphor?
+• What is latitude?
+• What is profit?
+• What is HTML?
+      `.trim();
+
+    }
+
+  }
+
+
+  /*
+    Friendly fallback.
+  */
+
+  if(!answer){
+
+    answer =
+      `I don't have that topic in my built-in knowledge yet. Try asking about one of the school subjects, or use the quizzes to practise Grade ${grade}.`;
+
+  }
+
+
+  setTimeout(() => {
+
+    addMsg(
+      answer,
+      "bot"
+    );
+
+  },250);
+
+}
+
+
+/* =========================================================
+   ENTER KEY FOR CHAT
+========================================================= */
+
+document
+  .getElementById("chatInput")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key === "Enter"){
+
+        sendChat();
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(){
+
+  document.getElementById(
+    "completedStat"
+  ).textContent =
+    completed;
+
+  document.getElementById(
+    "bestStat"
+  ).textContent =
+    best + "%";
+
+}
+
+
+function resetProgress(){
+
+  if(
+    !confirm(
+      "Reset all quiz progress?"
+    )
+  ){
+    return;
+  }
+
+
+  completed = 0;
+
+  best = 0;
+
+
+  localStorage.removeItem(
+    "er_completed"
+  );
+
+  localStorage.removeItem(
+    "er_best"
+  );
+
+
+  updateProgress();
+
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+document
+  .getElementById("themeBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      document.body.classList.toggle(
+        "dark"
+      );
+
+
+      const dark =
+        document.body.classList.contains(
+          "dark"
+        );
+
+
+      localStorage.setItem(
+        "er_dark",
+        dark ? "1" : "0"
+      );
+
+
+      this.textContent =
+        dark
+          ? "☀ Light mode"
+          : "☾ Dark mode";
+
+    }
+  );
+
+
+if(
+  localStorage.getItem("er_dark") === "1"
+){
+
+  document.body.classList.add("dark");
+
+  document.getElementById(
+    "themeBtn"
+  ).textContent =
+    "☀ Light mode";
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+document
+  .getElementById("mobileMenu")
+  .addEventListener(
+    "click",
+    function(){
+
+      document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+    }
+  );
+
+
+/* =========================================================
+   INITIALISE APP
+========================================================= */
+
+updateGradeUI();
+
+renderSubjects();
+
+loadQuizSubjects();
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
